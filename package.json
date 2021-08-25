@@ -1,0 +1,24 @@
+{
+  "name": "dis-edu",
+  "version": "2.1.0",
+  "main": "index.js",
+  "description": "Distributed Information Systems with Node.js",
+  "repository": "https://github.com/boldak/dis-edu",
+  "author": "Andrey Boldak <boldak.andrey@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "npx vuepress dev docs",
+    "docs:build": "npx vuepress build docs",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.7.1",
+    "@vuepress/plugin-pwa": "^1.7.1",
+    "vuepress": "^1.7.1",
+    "vuepress-theme-cool": "^1.3.1"
+  },
+  "devComments": {
+    "vuepress": "Install vuepress to test run plugins. According to https://github.com/vuejs/vuepress/issues/1608"
+  }
+}

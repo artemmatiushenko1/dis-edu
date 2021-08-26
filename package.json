@@ -10,7 +10,8 @@
     "docs:dev": "npx vuepress dev docs",
     "docs:build": "npx vuepress build docs",
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "deploy":"deploy.sh"
   },
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.7.1",

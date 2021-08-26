@@ -84,7 +84,7 @@ module.exports = {
 
 
     nav: [
-      { text: 'Вступ', link: '/' },
+      { text: 'Початок', link: '/' },
     ],
     lastUpdated: 'Last Updated', // string | boolean
       // Assumes GitHub. Can also be a full GitLab url.

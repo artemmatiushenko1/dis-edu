@@ -15,11 +15,11 @@ module.exports = {
     }]
   ],
   port: 8084,
-  base: '/dis-edu/',
+  // base: '/',
   theme: 'cool',
-  dest: 'dist',
+  // dest: 'dist',
   head: [
-    ['link', { rel: 'icon', href: '/faviconCustom.ico' }],
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css' }],
     ['link', {href: 'https://fonts.googleapis.com/icon?family=Material+Icons', rel :'stylesheet'}],
     
@@ -84,14 +84,14 @@ module.exports = {
 
 
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'Вступ', link: '/' },
     ],
     lastUpdated: 'Last Updated', // string | boolean
       // Assumes GitHub. Can also be a full GitLab url.
-    // repo: 'FriendlyUser/vuepress-theme-cool-starter',
+    repo: 'https://github.com/boldak/dis-edu',
     // Customising the header label
     // Defaults to "GitHub"/"GitLab"/"Bitbucket" depending on `themeConfig.repo`
-    // repoLabel: 'Github',
+    repoLabel: 'Github',
 
     // Optional options for generating "Edit this page" link
 
@@ -104,7 +104,7 @@ module.exports = {
     // defaults to false, set to true to enable
     editLinks: true,
     // custom text for edit link. Defaults to "Edit this page"
-    editLinkText: 'Help us improve this page!'
+    editLinkText: 'Ви можете покращити цю сторінку'
 
   },
   title: 'Розподілені інформаційні системи',

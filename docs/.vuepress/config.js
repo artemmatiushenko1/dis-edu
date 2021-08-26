@@ -15,7 +15,7 @@ module.exports = {
     }]
   ],
   port: 8084,
-  // base: '/',
+  base: '/dis-edu/',
   theme: 'cool',
   // dest: 'dist',
   head: [

@@ -86,7 +86,7 @@ module.exports = {
     nav: [
       { text: 'Початок', link: '/' },
     ],
-    lastUpdated: 'Last Updated', // string | boolean
+    lastUpdated: 'Останнє оновлення', // string | boolean
       // Assumes GitHub. Can also be a full GitLab url.
     repo: 'https://github.com/boldak/dis-edu',
     // Customising the header label

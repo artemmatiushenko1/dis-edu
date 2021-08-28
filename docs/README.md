@@ -9,6 +9,6 @@ features:
   details: Основи Open API. Використання Swagger 
 - title: Реалізація взаємодії компонентів 
   details: RESTfull, GraphQL, Server-sent Events, Scripted Query, Event Driven Arch, Microcervices Arch  
-footer: MIT Licensed | Copyright © 2021- present Andrey Boldak
+footer: "ECL 2.0 Licensed | Copyright © 2021 Andrey Boldak"
 ---
 

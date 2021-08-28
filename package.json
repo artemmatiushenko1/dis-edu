@@ -5,7 +5,7 @@
   "description": "Distributed Information Systems with Node.js",
   "repository": "https://github.com/boldak/dis-edu",
   "author": "Andrey Boldak <boldak.andrey@gmail.com>",
-  "license": "MIT",
+  "license": "ECL 2.0",
   "scripts": {
     "docs:dev": "npx vuepress dev docs",
     "docs:build": "npx vuepress build docs",

@@ -2,12 +2,13 @@
 # Розподілені інформаційні системи
 
 Курс лекцій доступний за адресою [boldak.github.io/dis-edu/](https://boldak.github.io/dis-edu/).
+
 Матеріал підготовлено з використанням [VuePress](https://vuepress.vuejs.org/), та стартера 
 [FriendlyUser/vuepress-theme-cool-starter](https://github.com/FriendlyUser/vuepress-theme-cool-starter).
 
-Для покращення контенту форкаємо цей репозіторій. Pull requests вітаються.
+Для покращення контенту форкаємо цей репозіторій. ***Pull requests вітаються.***
 
-Щоб опублікувати проект у Github Pages змінюємо файл ```./deploy.sh```
+Щоб опублікувати проект у Github Pages, змінюємо файл ```./deploy.sh```
 
 ```sh
 

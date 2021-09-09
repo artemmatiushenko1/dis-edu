@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Специфікація API | Розподілені інформаційні системи</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/dis-edu/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курс лекцій">
+    
+    <link rel="preload" href="/dis-edu/assets/css/0.styles.32220556.css" as="style"><link rel="preload" href="/dis-edu/assets/js/app.559d185c.js" as="script"><link rel="preload" href="/dis-edu/assets/js/2.43c74522.js" as="script"><link rel="preload" href="/dis-edu/assets/js/36.3e18223b.js" as="script"><link rel="prefetch" href="/dis-edu/assets/js/10.afaabfa6.js"><link rel="prefetch" href="/dis-edu/assets/js/11.b38f407c.js"><link rel="prefetch" href="/dis-edu/assets/js/12.502d8f9b.js"><link rel="prefetch" href="/dis-edu/assets/js/13.19ba463b.js"><link rel="prefetch" href="/dis-edu/assets/js/14.cf84a833.js"><link rel="prefetch" href="/dis-edu/assets/js/15.c7cb41fd.js"><link rel="prefetch" href="/dis-edu/assets/js/16.d95316e9.js"><link rel="prefetch" href="/dis-edu/assets/js/17.75c3ca84.js"><link rel="prefetch" href="/dis-edu/assets/js/18.8c26beee.js"><link rel="prefetch" href="/dis-edu/assets/js/19.e260de96.js"><link rel="prefetch" href="/dis-edu/assets/js/20.9a7379bb.js"><link rel="prefetch" href="/dis-edu/assets/js/21.383c6eb3.js"><link rel="prefetch" href="/dis-edu/assets/js/22.da07fd05.js"><link rel="prefetch" href="/dis-edu/assets/js/23.97bda903.js"><link rel="prefetch" href="/dis-edu/assets/js/24.1851e457.js"><link rel="prefetch" href="/dis-edu/assets/js/25.6444c9f3.js"><link rel="prefetch" href="/dis-edu/assets/js/26.254874da.js"><link rel="prefetch" href="/dis-edu/assets/js/27.24e27039.js"><link rel="prefetch" href="/dis-edu/assets/js/28.240d97ca.js"><link rel="prefetch" href="/dis-edu/assets/js/29.42ac25dd.js"><link rel="prefetch" href="/dis-edu/assets/js/3.25ea1055.js"><link rel="prefetch" href="/dis-edu/assets/js/30.f7c5143f.js"><link rel="prefetch" href="/dis-edu/assets/js/31.0fd81914.js"><link rel="prefetch" href="/dis-edu/assets/js/32.936308f3.js"><link rel="prefetch" href="/dis-edu/assets/js/33.c3386f09.js"><link rel="prefetch" href="/dis-edu/assets/js/34.3fb48e0a.js"><link rel="prefetch" href="/dis-edu/assets/js/35.728f7bae.js"><link rel="prefetch" href="/dis-edu/assets/js/37.394c24f9.js"><link rel="prefetch" href="/dis-edu/assets/js/38.8daafd37.js"><link rel="prefetch" href="/dis-edu/assets/js/39.a4a6e446.js"><link rel="prefetch" href="/dis-edu/assets/js/4.f33b38e3.js"><link rel="prefetch" href="/dis-edu/assets/js/5.8e5b1064.js"><link rel="prefetch" href="/dis-edu/assets/js/6.7e084e32.js"><link rel="prefetch" href="/dis-edu/assets/js/7.eaf79c7b.js"><link rel="prefetch" href="/dis-edu/assets/js/8.2124de32.js"><link rel="prefetch" href="/dis-edu/assets/js/9.10facf5d.js">
+    <link rel="stylesheet" href="/dis-edu/assets/css/0.styles.32220556.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dis-edu/" class="home-link router-link-active"><!----> <span class="site-name">Розподілені інформаційні системи</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/intro/" class="sidebar-heading clickable"><span>Вступ</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/arch/" class="sidebar-heading clickable"><span>Архітетура розподілених інформаційних систем</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/components-interaction/" class="sidebar-heading clickable"><span>Реалізація взаємодії компонентів розподіленої інформаційної системи</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/swagger/" class="sidebar-heading clickable router-link-active open"><span>Прикладний програмний інтерфейс сервісів</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/dis-edu/swagger/12.api.html" aria-current="page" class="active sidebar-link">Специфікація API</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#openapi-swagger" class="sidebar-link">OpenAPI, Swagger</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#високорівнева-структура-опису" class="sidebar-link">Високорівнева структура опису</a></li><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#опис-кінцевих-точок" class="sidebar-link">Опис кінцевих точок</a></li><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#багаторазове-використання-описів" class="sidebar-link">Багаторазове використання описів</a></li><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#опис-параметрів-query-та-body" class="sidebar-link">Опис параметрів query та body</a></li><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#групування-операціи" class="sidebar-link">Групування операцій</a></li></ul></li><li class="sidebar-sub-header"><a href="/dis-edu/swagger/12.api.html#swaggerui-express-js" class="sidebar-link">SwaggerUI + express.js</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/eda/" class="sidebar-heading clickable"><span>Реалізація взаємодії компонентів в EDA</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/msa/" class="sidebar-heading clickable"><span>Реалізація взаємодії сервісів в MSA</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="специфікація-api"><a href="#специфікація-api" class="header-anchor">#</a> Специфікація API</h1> <p>Хороший дизайн API - це тема, яка дуже актуальна для команд, які намагаються вдосконалити свою стратегію API.</p> <p>Загалом, ефективний дизайн API матиме такі характеристики:</p> <ul><li><em><strong>Легко читати та працювати з ним</strong></em> : З добре розробленим API буде легко працювати, а його ресурси та пов’язані з ним операції можуть швидко запам’ятовуватися розробниками, які постійно з ним працюють.</li> <li><em><strong>Важко зловживати</strong></em>: Впровадження та інтеграція з API з гарним дизайном буде простим процесом, а написання неправильного коду - менш ймовірним результатом. Він має інформативний відгук і не застосовує суворих вказівок щодо кінцевого споживача API.</li> <li><em><strong>Вичерпний і стислий</strong></em>: Нарешті, повний API дозволить розробникам створювати повноцінні програми проти даних, які ви розкриваєте. Повнота, як правило, відбувається з плином часу, і більшість розробників та розробників API поступово спираються на існуючі API. Це ідеал, до якого повинен прагнути кожен інженер чи компанія з API.</li></ul> <p>Ресурси є фундаментальними для концепції REST. Ресурс - це об’єкт, який є досить важливим для посилання сам по собі. Ресурс містить дані, відносини з іншими ресурсами та методи, які працюють з цими даними. Група ресурсів називається колекцією. Зміст колекцій та ресурси залежать від ваших організаційних та споживчих вимог. Якщо, наприклад, ви вважаєте, що ринок виграє від отримання основної інформації про базу користувачів вашого продукту, то ви можете розкрити це як колекцію чи ресурс. Уніфікований локатор ресурсів (URL) ідентифікує розташування ресурсу в Інтернеті. Ця URL-адреса вказує на місце розташування ресурсів вашого API. Базова URL-адреса є послідовною частиною цього розташування.</p> <p>Базова URL-адреса має бути акуратною, елегантною та простою, щоб розробники, які використовують ваш продукт, могли легко використовувати їх у своїх веб-програмах. Довга та важка для читання базова URL-адреса не просто погана на перегляд, але також може сприяти помиламк при спробі її перекодування. Іменникам слід завжди довіряти. Не існує правила щодо збереження ресурсних іменників однини чи множини, хоча доцільно зберігати колекції у множині. Наявність однакової множини у всіх ресурсах та колекціях відповідно для послідовності є хорошою практикою. Зрозумілість цих іменників допомагає розробникам зрозуміти тип ресурсу, описаного в URL-адресі, що в кінцевому підсумку дозволить їм стати самодостатніми під час роботи з вашим API.</p> <p>Усі ресурси мають набір методів, які можна застосовувати, щоб працювати з даними. REStful API включають переважно HTTP-методи, які мають чітко визначені та унікальні дії відносно ресурсу. Ось список часто використовуваних методів HTTP, які визначають операції CRUD для будь-якого ресурсу або колекції в RESTful API.</p> <table><thead><tr><th style="text-align:left;">Метод</th> <th style="text-align:left;">Опис</th></tr></thead> <tbody><tr><td style="text-align:left;">GET</td> <td style="text-align:left;">Використовується для отримання уявлення про ресурс.</td></tr> <tr><td style="text-align:left;">POST</td> <td style="text-align:left;">Використовується для створення нових ресурсів та підресурсів</td></tr> <tr><td style="text-align:left;">PUT</td> <td style="text-align:left;">Використовується для оновлення наявних ресурсів</td></tr> <tr><td style="text-align:left;">PATCH</td> <td style="text-align:left;">Використовується для оновлення наявних ресурсів</td></tr> <tr><td style="text-align:left;">DELETE</td> <td style="text-align:left;">Використовується для видалення наявних ресурсів</td></tr></tbody></table> <p>Кожен запит клієнта та відповідь на стороні сервера - це повідомлення, і в ідеальній екосистемі RESTful ці повідомлення мають бути самоописаними. Хороший відгук передбачає позитивну перевірку правильності впровадження та інформативну помилку щодо неправильної реалізації, яка може допомогти користувачам налагодити спосіб використання вашого сервісу.</p> <p>Загалом, є три можливі результати використання вашого API:</p> <ol><li>Клієнтська програма поводилася помилково (помилка клієнта - код відповіді <code>4xx</code>)</li> <li>API поводився помилково (помилка сервера - код відповіді <code>5xx</code>)</li> <li>Клієнт та API працювали (успіх - <code>2xx</code> код відповіді)</li></ol> <p>Добре розроблений API також має приклад того, як можна відповідати на успішний виклик URL-адреси. Цей приклад відповіді має бути простим і зрозумілим. Ефективне правило - допомогти розробникам менш ніж за п'ять секунд зрозуміти, що саме дасть їм успішна відповідь.</p> <h2 id="openapi-swagger"><a href="#openapi-swagger" class="header-anchor">#</a> OpenAPI, Swagger</h2> <p><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" target="_blank" rel="noopener noreferrer">Специфікація OpenAPI<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> (раніше специфікація Swagger) - це формат опису API для REST API. Файл OpenAPI дозволяє описати весь ваш API, включаючи:</p> <ul><li>Доступні кінцеві точки ( /users) та операції з кожною кінцевою точкою ( GET /users, POST /users)</li> <li>Параметри роботи Вхід і вихід для кожної операції</li> <li>Методи автентифікації</li> <li>Контактну інформацію, ліцензії, умови використання та іншу інформацію.</li></ul> <p>Технічні характеристики API можуть бути записані в YAML або JSON.</p> <p>YAML - це спроба створити більш зручний для сприйняття формат обміну даними. Він схожий на JSON (який насправді є підмножиною YAML), але використовує пробіли, двокрапки й дефіси для позначення структури.</p> <p>У синтаксисі YAML визначним є інтервал. Кожен відступ з двома пробілами представляє новий рівень структури. Кожен рівень може містити або одну пару ключ-значення (також відому як словник в жаргоні YAML), або послідовність (список дефісів). Значення для кожного ключа можуть бути взяті в лапки. Якщо в значенні є двокрапка або лапки, лапки треба використовувати обов'язково.</p> <p>Найпростіше зрозуміти синтаксис YAML, порівнюючи його з JSON.</p> <p>Простий об'єкт</p> <div class="language-json extra-class"><pre class="language-json"><code>
+    <span class="token punctuation">{</span>
+        <span class="token property">&quot;key1&quot;</span><span class="token operator">:</span><span class="token string">&quot;value1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;key2&quot;</span><span class="token operator">:</span><span class="token string">&quot;value2&quot;</span>
+    <span class="token punctuation">}</span>
+
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token key atrule">key1</span><span class="token punctuation">:</span> value1
+<span class="token key atrule">key2</span><span class="token punctuation">:</span> value2
+
+</code></pre></div><p>Масив</p> <div class="language-json extra-class"><pre class="language-json"><code>
+<span class="token punctuation">[</span><span class="token string">&quot;first&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;second&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;third&quot;</span><span class="token punctuation">]</span>
+
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token punctuation">-</span> first
+<span class="token punctuation">-</span> second
+<span class="token punctuation">-</span> third
+
+</code></pre></div><p>Об'єкт з властивостями-масивами</p> <div class="language-json extra-class"><pre class="language-json"><code>
+    <span class="token punctuation">{</span>
+        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;Avery&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Callie&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Lucy&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Molly&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;hobbies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;swimming&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;biking&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;drawing&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;horseplaying&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token key atrule">children</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> Avery
+  <span class="token punctuation">-</span> Callie
+  <span class="token punctuation">-</span> Lucy
+  <span class="token punctuation">-</span> Molly
+<span class="token key atrule">hobbies</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> swimming
+  <span class="token punctuation">-</span> biking
+  <span class="token punctuation">-</span> drawing
+  <span class="token punctuation">-</span> horseplaying
+
+</code></pre></div><p>Масив об'єктів</p> <div class="language-json extra-class"><pre class="language-json"><code>
+    <span class="token punctuation">[</span>  
+        <span class="token punctuation">{</span>  
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;Tom&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">43</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>  
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span><span class="token string">&quot;Shannon&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;age&quot;</span><span class="token operator">:</span><span class="token number">41</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token punctuation">-</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Tom
+  <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">42</span>
+<span class="token punctuation">-</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Shannon
+  <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">41</span>
+
+</code></pre></div><p><em><strong>Swagger</strong></em> - це набір інструментів з відкритим кодом, побудованих на основі специфікації OpenAPI, які можуть допомогти вам проектувати, створювати, документувати та використовувати REST API. Основні інструменти Swagger включають:</p> <ul><li>Swagger Editor - редактор на основі браузера, де можна писати специфікації OpenAPI.</li> <li>Інтерфейс Swagger - відображає специфікації OpenAPI як інтерактивну документацію API.</li> <li>Swagger Codegen - генерує серверні заглушки та клієнтські бібліотеки за специфікацією OpenAPI.</li></ul> <p>Для розроблення специфікації зручним є інструмент <a href="https://editor.swagger.io/" target="_blank" rel="noopener noreferrer">Swagger Editor<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, який надає багато можливостей, в тому числі можливості розроблювати та перевіряти специфікації Open API.</p> <center><img src="/dis-edu/12-01.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Як приклад RESTfull сервісу будемо використовувати наш проект з розділу <a href="/dis-edu/components-interaction/03.restfull-services.html">RESTfull сервіси</a>.</p> <p>Для забезпечення взаємодії Swagger Editor з нашим сервісом необхідно в проекті встановити додаткову залежність
+<a href="https://www.npmjs.com/package/cors" target="_blank" rel="noopener noreferrer">cors<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, яка надає проміжне програмне забезпечення реалізації технології Cross Origin Resource Sharing (<a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank" rel="noopener noreferrer">CORS<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>).</p> <p>Після встановлення цієї залежності файл <code>./package.json</code> повинен мати вигляд</p> <div class="language-json extra-class"><pre class="language-json"><code>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;express-getting-started&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node server&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;nodemon server&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;body-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.19.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cookie-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.4.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cors&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.8.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;execa&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.1.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;express&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.3.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;axios&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.21.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;jest&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^27.0.6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;nodemon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.0.9&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>В файлі <code>./server.js</code> зробимо підключення цього проміжного ПЗ.</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code>
+<span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'body-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> cookieParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cookie-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token constant">CORS</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;cors&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token constant">CORS</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>staticPath<span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span> extended<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cookieParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    parameterLimit<span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span><span class="token punctuation">,</span>
+    extended<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">,</span> router<span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> server <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token punctuation">,</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">** EDU JACE server starts at port </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> server
+
+</code></pre></div><p>Запустимо сервіс та переконаємося у його готовності.
+Нагадаємо, що наш сервіс надає користувачу ресурс даних та забезпечує CRUD-інтерфейс до нього.</p> <p>Будемо вивчати структуру опису на цьому прикладі. Запустимо <a href="https://editor.swagger.io/" target="_blank" rel="noopener noreferrer">Swagger Editor<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, виконаємо
+команду <code>File &gt; Clear Editor</code>. Ми готові до роботи.</p> <h3 id="високорівнева-структура-опису"><a href="#високорівнева-структура-опису" class="header-anchor">#</a> Високорівнева структура опису</h3> <p>На верхньому рівні в специфікації OpenAPI 3.0 існує вісім об'єктів. Усередині цих верхнеуровневих об'єктів є багато вкладених об'єктів, але на верхньому рівні є тільки такі об'єкти:</p> <ul><li><code>openapi</code> - визначає версію специфікації (ми будемо використовувати версію 3.0.2);</li> <li><code>info</code> - містить основну інформацію про ваш API, включаючи заголовок, опис, версію, посилання на ліцензію, посилання на умови обслуговування і контактну інформацію;</li> <li><code>servers</code> - вказується базовий шлях, який використовується в ваших запитах API. Базовий шлях - це частина URL, яка знаходиться перед кінцевою точкою;</li> <li><code>paths</code> - описує кінцеві точки вашого API;</li> <li><code>components</code> -  описує визначення, які можуть повторно використовуватись в декількох місцях в документі специфікації</li> <li><code>security</code> - вказує протокол безпеки або авторизації, який використовується при відправленні запитів;</li> <li><code>tags</code> - описує групування кінцевих точок в деякі логічні групи;</li> <li><code>externalDocs</code> - дозволяє додавати посилання на зовнішню документацію.</li></ul> <p>Весь документ (об'єкт, що містить вісім об'єктів кореневого рівня) називається документом OpenAPI. За прийнятим угодою документу привласнюють ім'я <code>openapi.yml</code>.</p> <p>Розпочнемо створення опису в Swagger Editor</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># версія Open API, що використовується </span>
+<span class="token key atrule">openapi</span><span class="token punctuation">:</span> <span class="token string">&quot;3.0.2&quot;</span>
+
+<span class="token comment"># Загальна інфорація про наш сервіс</span>
+<span class="token key atrule">info</span><span class="token punctuation">:</span> 
+  <span class="token comment"># Коротка назва</span>
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">&quot;RESTfull service API&quot;</span>
+  <span class="token comment"># Опис</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;This is part of the training material for learning means of describing RESTfull service API &quot;</span>
+  <span class="token comment"># Версія нашого API</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;0.1&quot;</span>
+  <span class="token comment"># Контактна інформація</span>
+  <span class="token key atrule">contact</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;RESTfull service API&quot;</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080/&quot;</span>
+    <span class="token key atrule">email</span><span class="token punctuation">:</span> <span class="token string">&quot;boldak.andrey@gmail.com&quot;</span>
+  <span class="token comment"># Ліцензія (створіть статичний файл ліцензії в нашому сервісі та  вкажіть її URL)</span>
+  <span class="token key atrule">license</span><span class="token punctuation">:</span> 
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;ECL 2.0&quot;</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080/license.html&quot;</span>
+
+<span class="token comment"># Посилання на додаткову інформацію    </span>
+<span class="token key atrule">externalDocs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;See also Educational Materials&quot;</span>
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;https://boldak.github.io/dis-edu/swagger/12.api.html#openapi-swagger&quot;</span>
+
+<span class="token comment"># Список серверів, які можна використовувати для перевірки API</span>
+<span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  
+  <span class="token punctuation">-</span> <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080&quot;</span>
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Local development&quot;</span>
+
+</code></pre></div><p>Swagger Editor оновлює візуалізацію під час роботи в редакторі</p> <center><img src="/dis-edu/12-02.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Коментарі в описі та на рисунку співпадають.</p> <p>Як бачимо, Swagger Editor постійно перевіряє правильність опису та повідомляє про помилки. Наразі маємо повідомлення про відсутність обов'язкових компонентів опису (<code>paths</code>).</p> <h3 id="опис-кінцевих-точок"><a href="#опис-кінцевих-точок" class="header-anchor">#</a> Опис кінцевих точок</h3> <p>Об'єкт  <code>paths</code> складається з об'єктів-кінцевих точок, які позначені їх шляхами. Щоб створити повну URL-адресу, шлях додається до URL-адреси з вибраного об'єкту списку <code>servers</code>. Повторення шляхів не допускається так само, як і будь-які невизначенності. Наприклад, шляхи</p> <div class="language- extra-class"><pre class="language-text"><code>
+ /pets/{petId}
+ /pets/{name}
+
+</code></pre></div><p>вважаються однаковими, а шляхи</p> <div class="language- extra-class"><pre class="language-text"><code>
+ /{entity}/me
+ /books/{id}
+
+</code></pre></div><p>можуть бути неоднозначно розпізнані.</p> <p>Для нашого сервісу ми будемо використовувати шляхи:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>    /
+    /api/presidents/<span class="token punctuation">{</span>id<span class="token punctuation">}</span>
+    /api/presidents
+</code></pre></div><p>Кожен шлях складається з операцій - описів HTTP-методів.</p> <p>Об'єкт операції містить різні властивості і об'єкти:</p> <ul><li><code>tags</code>- Групове ім'я для організації шляхів в інтерфейсі Swagger. Swagger UI згрупує кінцеві точки під заголовками тегів.</li> <li><code>summary</code>- Короткий опис шляху. Swagger UI показує опис поруч з ім'ям шляху. Обмежують опис тільки 5-10 словами. Опис відображається і при згорнутому розділі.</li> <li><code>description</code>- Повний опис шляху.</li> <li><code>externalDocs</code>(Об'єкт)- Посилання на документацію з доп. інформацією про шляхи.</li> <li><code>operationId</code>- Унікальний ідентифікатор шляху.</li> <li><code>parameters</code>(об'єкт)- Параметри, що приймаються шляхом. Не включає параметри тіла запиту, які докладно описані в об'єкті <code>requestBody</code>. Об'єкт <code>parameters</code> також може включати в себе об'єкт <code>reference</code>, який містить посилання на опис в об'єкті <code>components</code>.</li> <li><code>requestBody</code>(об'єкт)-  Опис параметра тіла запиту для цього шляху. Об'єкт <code>requestBody</code> також може включати в себе об'єкт <code>reference</code> , який містить посилання на опис в об'єкті <code>components</code>.</li> <li><code>response</code>(об'єкт)- Відповіді, надані на запити з цього шляху. Об'єкт <code>response</code> також може включати в себе об'єкт <code>reference</code>.</li> <li><code>callbacks</code>(об'єкт)- Опис зворотного виклику можуть бути ініційовані сервером при бажанні. <code>Callbacks</code> - це операції, що виконуються після завершення виконання функції. Об'єкт <code>callbacks</code> також може включати в себе об'єкт <code>reference</code>.</li> <li><code>deprecated</code>: Чи є шлях застарілим. Можна опустити, якщо ви не хочете вказати застаріле поле.</li> <li><code>security</code>(об'єкт)- Метод безпечної авторизації, який використовується з операцією. Цей об'єкт додається на рівні шляху, тільки якщо потрібно перезаписати об'єкт <code>security</code> на кореневому рівні. Ім'я визначається об'єктом <code>securitySchemes</code> в об'єкті <code>components</code>.</li> <li><code>servers</code>(об'єкт)- Об'єкт <code>servers</code>, який може відрізнятися від глобального об'єкта <code>servers</code> для цього шляху.</li></ul> <p>Для кожної операції обов'язковим є опис відповідей <code>response</code>, який складається з об'єктів опису відповідей помічених кодами, що повертаються HTTP-запитами.</p> <p>Об'єкт відповіді містить:</p> <ul><li><code>summary</code>- Короткий опис відповіді.</li> <li><code>description</code> - Опис відповіді.</li> <li><code>headers</code> - Заголовки, що пересилаються у відповіді.</li> <li><code>content</code> - Опис змісту відповіді, яка складається з опису типів даних (схем) для кожного MIME-типу поверненого результату.</li></ul> <p>Спробуємо описати найпростіший запит <a href="http://localhost:8080/" target="_blank" rel="noopener noreferrer">http://localhost:8080/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, який повертає просту HTML-сторінку</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token comment"># Кінцева точка (разом з servers - http://localhost:8080/ )</span>
+  <span class="token key atrule">/</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get</span><span class="token punctuation">:</span> 
+      <span class="token comment"># Короткий опис, відображується коли панель кінцевої точки згорнута</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get general info about service&quot;</span>
+      <span class="token comment"># Повний опис</span>
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Returns the page with service name&quot;</span>
+      <span class="token comment"># Опис можливих відповідей</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token comment"># Код 200 - успішне оброблення запиту</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token comment"># MIME-тип ( ми повертаємо HTML-сторінку)</span>
+            <span class="token key atrule">text/html</span><span class="token punctuation">:</span>
+              <span class="token comment"># Тип результата - string</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+              <span class="token comment"># Прикладу немає ( відображується &quot;Not found&quot;)</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;Not found&quot;</span>
+
+
+</code></pre></div><p>Swagger Editor відобразить цей опис наступним чином</p> <center><img src="/dis-edu/12-03.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>При натисканні на кнопку <strong><code>Try it out</code></strong>, можна виконати запит, що описаний вище.</p> <center><img src="/dis-edu/12-04.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Таким чином, ми маємо інтерактивну документацію нашого API з можливістю спробувати виконати запити.</p> <p>Цей запит не мав параметрів та повертав результат простого типу. Для опису більш складних запитів
+об'єкт операції повинен містити опис параметрів і більш складний опис типу відповіді.</p> <p>Опис параметрів це масив описів, кожен з яких містить:</p> <ul><li><code>name</code>- Ім'я параметра.</li> <li><code>in</code>- Місце параметра. Можливі значення: <code>header</code>, <code>path</code>, <code>query</code>, або <code>cookie</code>.</li> <li><code>description</code>- Опис параметра.</li> <li><code>required</code>- Чи є параметр обов'язковим.</li> <li><code>deprecated</code>- Чи є параметр застарілим.</li> <li><code>allowEmptyValue</code>- Чи дозволяє параметр передавати пусте значення.</li> <li><code>style</code>- Як дані параметра серіалізуются (перетворюються в байти під час передачі даних).</li> <li><code>allowReserved</code>- Чи дозволені зарезервовані символи.</li> <li><code>schema</code>(об'єкт)- Схема або модель для параметра. Схема визначає структуру вхідних або вихідних даних.</li> <li><code>example</code>- Приклад.</li></ul> <p>Наприклад, наш сервіс підтримує кінцеву точку <code>/api/presidents/{id}</code>, яка дозволяє отримати елемент даних, для якого у запиті вказаний унікальний ідентифікатор. Цей параметр запиту знаходиться в шляху, є обов'язковим, може бути рядком, за замовчуванням має значення 1.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>
+    <span class="token comment"># Список параметрів </span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token comment"># Опис параметру</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">1</span>
+
+</code></pre></div><p>Результат, який повертає цей запит - це масив з одного елементу колекції даних з відповідним ID. Якщо елемент з таким
+ID не знайдено повертаємо порожній масив</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>/api/presidents/<span class="token punctuation">{</span>id<span class="token punctuation">}</span><span class="token punctuation">:</span>
+
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data about US presidents&quot;</span>
+      
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span> 
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+      <span class="token comment"># Список параметрів </span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token comment"># Опис параметру</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+       <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+        <span class="token key atrule">content</span><span class="token punctuation">:</span>
+          <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+            <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+              <span class="token comment"># Масив</span>
+              <span class="token key atrule">items</span><span class="token punctuation">:</span> 
+                <span class="token comment"># Об'єктів</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;object&quot;</span>
+                <span class="token comment"># Що мають властивості</span>
+                <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">id</span><span class="token punctuation">:</span>
+                    <span class="token comment"># Одного з перелічених типів</span>
+                    <span class="token key atrule">oneOf</span><span class="token punctuation">:</span>  
+                      <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+                      <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;integer&quot;</span>
+                  <span class="token key atrule">name</span><span class="token punctuation">:</span> 
+                    <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+                  <span class="token key atrule">photo</span><span class="token punctuation">:</span>
+                    <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+            <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span> 
+</code></pre></div><p>Така кінцева точка буде відображена наступним чином</p> <center><img src="/dis-edu/12-05.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Друга операція, яка асоційована з цією кінцевою точкою, це операція видалення. Має такий само вхідний параметр та повертає видалений елемент даних. Тобто в нас можливе повторення описів.</p> <h3 id="багаторазове-використання-описів"><a href="#багаторазове-використання-описів" class="header-anchor">#</a> Багаторазове використання описів</h3> <p>Для того, щоб створити описи, а потім їх багаторазово використовувати, створюють розділ <code>components</code>, який може містити:</p> <ul><li>схеми;</li> <li>відповіді;</li> <li>параметри;</li> <li>приклади;</li> <li>тіло запиту;</li> <li>заголовки;</li> <li>схеми безпеки;</li> <li>посилання;</li> <li>коллбекі.</li></ul> <p>В нашому випадку доцільно винести схеми для елементу даних, масиву з них, опис параметра в шляху.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">components</span><span class="token punctuation">:</span>
+  
+  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+    <span class="token key atrule">id_in_path</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+      <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+      <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+      <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">1</span>
+
+  <span class="token key atrule">schemas</span><span class="token punctuation">:</span>
+    <span class="token key atrule">item</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;object&quot;</span>
+      <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+        <span class="token key atrule">id</span><span class="token punctuation">:</span>
+          <span class="token key atrule">oneOf</span><span class="token punctuation">:</span>  
+            <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;integer&quot;</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+        <span class="token key atrule">photo</span><span class="token punctuation">:</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+      
+    <span class="token key atrule">array_of_items</span><span class="token punctuation">:</span>  
+      <span class="token key atrule">items</span><span class="token punctuation">:</span>
+        <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+  
+  <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get_response</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+      <span class="token key atrule">content</span><span class="token punctuation">:</span>
+        <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/array_of_items'</span>
+
+<span class="token punctuation">...</span>
+
+
+<span class="token key atrule">&quot;/api/presidents/{id}&quot;</span><span class="token punctuation">:</span>
+  
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data&quot;</span>
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data about US presidents&quot;</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/parameters/id_in_path&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/responses/get_response&quot;</span>    
+    
+    <span class="token key atrule">delete</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete data&quot;</span>
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete the data item&quot;</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/parameters/id_in_path&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+
+</code></pre></div><p>Таким чином, опис скорочується та зменшується кількість помилок, пов'язаних з множинним визначенням сутностей.</p> <h3 id="опис-параметрів-query-та-body"><a href="#опис-параметрів-query-та-body" class="header-anchor">#</a> Опис параметрів query та body</h3> <p>Кінцева точка <code>/api/presidents/</code> відповідає CRUD-інтерфейсу для нашої колекції даних. Параметри для цих запитів передаються
+за допомогою <code>query</code> або <code>body</code>.</p> <p>Для опису параметрів, що передаються в <code>query</code>, опис майже такий самий, як для <code>path</code>. Для опису <code>body</code> використовується об'єкт <code>requestBody</code></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">/api/presidents/</span><span class="token punctuation">:</span>
+  
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data about US presidents&quot;</span>
+        
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> 
+      
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/responses/get_response&quot;</span>    
+      
+    
+    <span class="token key atrule">post</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Create data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Create data item&quot;</span>
+      
+      <span class="token key atrule">requestBody</span><span class="token punctuation">:</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/schemas/item&quot;</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">required</span><span class="token punctuation">:</span>
+                    <span class="token punctuation">-</span> name
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                
+    <span class="token key atrule">put</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Update data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Update the data item, the data item will be replaced&quot;</span>
+      
+      <span class="token key atrule">requestBody</span><span class="token punctuation">:</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/schemas/item&quot;</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">required</span><span class="token punctuation">:</span>
+                      <span class="token punctuation">-</span> id
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                         
+    <span class="token key atrule">delete</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete the data item&quot;</span>
+      
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span>
+          <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>  
+            
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                
+
+</code></pre></div><p>Зверніть увагу, яким чином модифікується опис схем за допомогою <code>allOf</code>.</p> <h3 id="групування-операціи"><a href="#групування-операціи" class="header-anchor">#</a> Групування операцій</h3> <p>Групування операцій може здійснюватися за допомогою тегів</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token key atrule">openapi</span><span class="token punctuation">:</span> <span class="token string">&quot;3.0.2&quot;</span>
+
+
+<span class="token key atrule">info</span><span class="token punctuation">:</span> 
+  
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">&quot;RESTfull service API&quot;</span>
+  
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;This is part of the training material for learning means of describing RESTfull service API &quot;</span>
+  
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;0.1&quot;</span>
+  
+  <span class="token key atrule">contact</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;RESTfull service API&quot;</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080/&quot;</span>
+    <span class="token key atrule">email</span><span class="token punctuation">:</span> <span class="token string">&quot;boldak.andrey@gmail.com&quot;</span>
+  
+  <span class="token key atrule">license</span><span class="token punctuation">:</span> 
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;ECL 2.0&quot;</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080/license.html&quot;</span>
+
+    
+<span class="token key atrule">externalDocs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Educational Materials&quot;</span>
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;https://boldak.github.io/dis-edu/swagger/12.api.html#openapi-swagger&quot;</span>
+
+  
+<span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  
+  <span class="token punctuation">-</span> <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8080&quot;</span>
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Local development&quot;</span>
+    
+
+<span class="token key atrule">components</span><span class="token punctuation">:</span>
+  
+  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+    <span class="token key atrule">id_in_path</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+      <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+      <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+      <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">1</span>
+
+  <span class="token key atrule">schemas</span><span class="token punctuation">:</span>
+    <span class="token key atrule">item</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;object&quot;</span>
+      <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+        <span class="token key atrule">id</span><span class="token punctuation">:</span>
+          <span class="token key atrule">oneOf</span><span class="token punctuation">:</span>  
+            <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;integer&quot;</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+        <span class="token key atrule">photo</span><span class="token punctuation">:</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+      
+    <span class="token key atrule">array_of_items</span><span class="token punctuation">:</span>  
+      <span class="token key atrule">items</span><span class="token punctuation">:</span>
+        <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+  
+  <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get_response</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+      <span class="token key atrule">content</span><span class="token punctuation">:</span>
+        <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/array_of_items'</span>
+          
+      
+
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token key atrule">/</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get</span><span class="token punctuation">:</span> 
+      
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get general info about service&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Returns the page with service name&quot;</span>
+    
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">text/html</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;Not found&quot;</span>
+              
+  
+  <span class="token key atrule">&quot;/api/presidents/{id}&quot;</span><span class="token punctuation">:</span>
+  
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data&quot;</span>
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data about US presidents&quot;</span>
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span> 
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/parameters/id_in_path&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/responses/get_response&quot;</span>    
+    
+    <span class="token key atrule">delete</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete data&quot;</span>
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete the data item&quot;</span>
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;ITEM ID REQUIRED&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;RETURNS ONE ITEM&quot;</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/parameters/id_in_path&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                      
+              
+  
+  <span class="token key atrule">/api/presidents/</span><span class="token punctuation">:</span>
+  
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Get data about US presidents&quot;</span>
+      
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span> 
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+        
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> 
+      
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/responses/get_response&quot;</span>    
+      
+    
+    <span class="token key atrule">post</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Create data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Create data item&quot;</span>
+      
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;REQUEST BODY REQUIRED&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;RETURNS ONE ITEM&quot;</span>
+        
+      <span class="token key atrule">requestBody</span><span class="token punctuation">:</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/schemas/item&quot;</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">required</span><span class="token punctuation">:</span>
+                    <span class="token punctuation">-</span> name
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                
+    <span class="token key atrule">put</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Update data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Update the data item, the data item will be replaced&quot;</span>
+      
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;REQUEST BODY REQUIRED&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;ITEM ID REQUIRED&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;RETURNS ONE ITEM&quot;</span>
+        
+      <span class="token key atrule">requestBody</span><span class="token punctuation">:</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+                <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/components/schemas/item&quot;</span>
+                  <span class="token punctuation">-</span> <span class="token key atrule">required</span><span class="token punctuation">:</span>
+                      <span class="token punctuation">-</span> id
+              <span class="token key atrule">example</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+                         
+    <span class="token key atrule">delete</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete data&quot;</span>
+      
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Delete the data item&quot;</span>
+      
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;CRUD&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;ITEM ID REQUIRED&quot;</span>
+        <span class="token punctuation">-</span> <span class="token string">&quot;RETURNS ONE ITEM&quot;</span>
+        
+      
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Internal ID of data item&quot;</span>
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">default</span><span class="token punctuation">:</span>
+          <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>  
+            
+            
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;Successful response&quot;</span>
+          <span class="token key atrule">content</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application/json</span><span class="token punctuation">:</span>
+              <span class="token key atrule">schema</span><span class="token punctuation">:</span> 
+                <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">'#/components/schemas/item'</span>
+              <span class="token key atrule">example</span><span class="token punctuation">:</span>
+                <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token string">&quot;0d0a7413-8f8d-48f7-adb1-0954b3733807&quot;</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;George Washigton&quot;</span>
+                <span class="token key atrule">photo</span><span class="token punctuation">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/330px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+
+
+</code></pre></div><p>Swagger Editor відображує групи наступним чином</p> <center><img src="/dis-edu/12-06.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <h2 id="swaggerui-express-js"><a href="#swaggerui-express-js" class="header-anchor">#</a> SwaggerUI + express.js</h2> <p>Після написання специфікація OpenAPI інструменти Swagger можуть сприяти подальшому розвитку вашого API різними способами:</p> <ul><li>Користувачі, які вперше розробили дизайн: використовуйте Swagger Codegen для створення серверного заглушки для вашого API. Залишається лише реалізувати логіку сервера - і ваш API готовий до роботи!</li> <li>Використовуйте Swagger Codegen для створення клієнтських бібліотек для вашого API більш ніж 40 мовами.</li> <li>Використовуйте інтерфейс Swagger для створення інтерактивної документації API, яка дозволяє користувачам випробовувати виклики API безпосередньо у веб-браузері.</li></ul> <p>І більше! Перевірте <a href="https://swagger.io/open-source-integrations/" target="_blank" rel="noopener noreferrer">інструменти<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, які інтегруються з Swagger.</p> <p>Розглянемо, яким чином можна покращити наш сервіс за рахунок підключення інтерактивної документації API та засобів статистичного аналізу викликів API.</p> <p>Для цього підключимо додаткові залежності:</p> <ul><li><a href="https://www.npmjs.com/package/yamljs" target="_blank" rel="noopener noreferrer">yamljs<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - Автономний аналізатор та кодер JavaScript YAML 1.2. Працює під node.js та у всіх основних браузерах.</li> <li><a href="https://www.npmjs.com/package/swagger-ui-express" target="_blank" rel="noopener noreferrer">swagger-ui-express<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - дозволяє обслуговувати автоматично створені документи API, API, створені за допомогою файлового інтерфейсу, на основі <code>swagger.json</code> файлу. Результатом є жива документація для вашого API, розміщена на вашому сервері за вказаним маршрутом.</li> <li><a href="https://www.npmjs.com/package/swagger-stats" target="_blank" rel="noopener noreferrer">swagger-stats<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - відстежує запити та відповіді API REST у мікросервісах Node.js, а також збирає статистику для кожної операції API. <code>swagger-stats</code> виявляє операції API на основі експрес-маршрутів.</li> <li><a href="https://www.npmjs.com/package/prom-client" target="_blank" rel="noopener noreferrer">prom-client<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - Клієнт prometheus для Node.js, який підтримує гістограми, резюме, датчики та лічильники.</li></ul> <p>Після встановлення цих залежностей файл <code>./package.json</code> буде виглядати наступним чином</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;express-getting-started&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node server&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;nodemon server&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;body-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.19.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cookie-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.4.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cors&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.8.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;execa&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.1.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;express&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;prom-client&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^12.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;swagger-stats&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.99.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;swagger-ui-express&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.1.6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.3.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;yamljs&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.3.0&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;axios&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.21.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;jest&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^27.0.6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;nodemon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.0.9&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Змінимо файл <code>./server.js</code></p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><div class="highlighted"> </div><br><br><br><br><br><br></div><pre class="language-js"><code>
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> swaggerUi <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'swagger-ui-express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token constant">YAML</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'yamljs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> swStats <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'swagger-stats'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> swaggerDocument <span class="token operator">=</span> <span class="token constant">YAML</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'./openapi.yml'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token constant">CORS</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>staticPath<span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span> extended<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cookieParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    parameterLimit<span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span><span class="token punctuation">,</span>
+    extended<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>swStats<span class="token punctuation">.</span><span class="token function">getMiddleware</span><span class="token punctuation">(</span><span class="token punctuation">{</span>swaggerSpec<span class="token operator">:</span>swaggerDocument<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">,</span> router<span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> swaggerUi<span class="token punctuation">.</span>serve<span class="token punctuation">,</span> swaggerUi<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span>swaggerDocument<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> server <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token punctuation">,</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">** EDU JACE server starts at port </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> server
+
+</code></pre></div><p>Підключаємо залежності, зчитуємо файл <code>./openapi.yml</code> та перетворюємо в json. Підключаємо <code>swStats</code> та <code>swaggerUi</code>. *** <code>swStats</code> повинен підключатися раніше ніж <code>swaggerUi</code>***.
+Видаляємо файл <code>./index.html</code> (тепер на кінцевій точці <code>/</code> знаходиться інтерактивна документація).</p> <p>Тепер запустимо сервер, та за адресою <a href="http://localhost:8080/" target="_blank" rel="noopener noreferrer">http://localhost:8080/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> будемо мати інтерактивну документацію</p> <center><img src="/dis-edu/12-07.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>а за адресою  <a href="http://localhost:8080/swagger-stats/" target="_blank" rel="noopener noreferrer">http://localhost:8080/swagger-stats/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - доступ до потужної системи аналізу використання нашого сервісу</p> <center><img src="/dis-edu/12-08.jpg" style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Існує багато інших інструментів, пов'язаних з Open API, які можна використати для покращення RESTfull сервісу.</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/boldak/dis-edu/edit/master/docs/swagger/12.api.md" target="_blank" rel="noopener noreferrer">Ви можете покращити цю сторінку</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">8/28/2021, 7:33:55 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dis-edu/components-interaction/06.scripted-query.html" class="prev">
+        Scripted Query сервіси
+      </a></span> <span class="next"><a href="/dis-edu/eda/13.rabbitmq.html">
+        Реалізація обміну повідомленнями за допомогою RabbitMQ
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/dis-edu/assets/js/app.559d185c.js" defer></script><script src="/dis-edu/assets/js/2.43c74522.js" defer></script><script src="/dis-edu/assets/js/36.3e18223b.js" defer></script>
+  </body>
+</html>

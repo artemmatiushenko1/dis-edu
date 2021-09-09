@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Push-нотифікація з використанням Server-Sent Events | Розподілені інформаційні системи</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/dis-edu/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курс лекцій">
+    
+    <link rel="preload" href="/dis-edu/assets/css/0.styles.32220556.css" as="style"><link rel="preload" href="/dis-edu/assets/js/app.559d185c.js" as="script"><link rel="preload" href="/dis-edu/assets/js/2.43c74522.js" as="script"><link rel="preload" href="/dis-edu/assets/js/21.383c6eb3.js" as="script"><link rel="prefetch" href="/dis-edu/assets/js/10.afaabfa6.js"><link rel="prefetch" href="/dis-edu/assets/js/11.b38f407c.js"><link rel="prefetch" href="/dis-edu/assets/js/12.502d8f9b.js"><link rel="prefetch" href="/dis-edu/assets/js/13.19ba463b.js"><link rel="prefetch" href="/dis-edu/assets/js/14.cf84a833.js"><link rel="prefetch" href="/dis-edu/assets/js/15.c7cb41fd.js"><link rel="prefetch" href="/dis-edu/assets/js/16.d95316e9.js"><link rel="prefetch" href="/dis-edu/assets/js/17.75c3ca84.js"><link rel="prefetch" href="/dis-edu/assets/js/18.8c26beee.js"><link rel="prefetch" href="/dis-edu/assets/js/19.e260de96.js"><link rel="prefetch" href="/dis-edu/assets/js/20.9a7379bb.js"><link rel="prefetch" href="/dis-edu/assets/js/22.da07fd05.js"><link rel="prefetch" href="/dis-edu/assets/js/23.97bda903.js"><link rel="prefetch" href="/dis-edu/assets/js/24.1851e457.js"><link rel="prefetch" href="/dis-edu/assets/js/25.6444c9f3.js"><link rel="prefetch" href="/dis-edu/assets/js/26.254874da.js"><link rel="prefetch" href="/dis-edu/assets/js/27.24e27039.js"><link rel="prefetch" href="/dis-edu/assets/js/28.240d97ca.js"><link rel="prefetch" href="/dis-edu/assets/js/29.42ac25dd.js"><link rel="prefetch" href="/dis-edu/assets/js/3.25ea1055.js"><link rel="prefetch" href="/dis-edu/assets/js/30.f7c5143f.js"><link rel="prefetch" href="/dis-edu/assets/js/31.0fd81914.js"><link rel="prefetch" href="/dis-edu/assets/js/32.936308f3.js"><link rel="prefetch" href="/dis-edu/assets/js/33.c3386f09.js"><link rel="prefetch" href="/dis-edu/assets/js/34.3fb48e0a.js"><link rel="prefetch" href="/dis-edu/assets/js/35.728f7bae.js"><link rel="prefetch" href="/dis-edu/assets/js/36.3e18223b.js"><link rel="prefetch" href="/dis-edu/assets/js/37.394c24f9.js"><link rel="prefetch" href="/dis-edu/assets/js/38.8daafd37.js"><link rel="prefetch" href="/dis-edu/assets/js/39.a4a6e446.js"><link rel="prefetch" href="/dis-edu/assets/js/4.f33b38e3.js"><link rel="prefetch" href="/dis-edu/assets/js/5.8e5b1064.js"><link rel="prefetch" href="/dis-edu/assets/js/6.7e084e32.js"><link rel="prefetch" href="/dis-edu/assets/js/7.eaf79c7b.js"><link rel="prefetch" href="/dis-edu/assets/js/8.2124de32.js"><link rel="prefetch" href="/dis-edu/assets/js/9.10facf5d.js">
+    <link rel="stylesheet" href="/dis-edu/assets/css/0.styles.32220556.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dis-edu/" class="home-link router-link-active"><!----> <span class="site-name">Розподілені інформаційні системи</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/intro/" class="sidebar-heading clickable"><span>Вступ</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/arch/" class="sidebar-heading clickable"><span>Архітетура розподілених інформаційних систем</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/components-interaction/" class="sidebar-heading clickable router-link-active open"><span>Реалізація взаємодії компонентів розподіленої інформаційної системи</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/dis-edu/components-interaction/01.express.html" class="sidebar-link">Розроблення веб-сервера за допомогою express.js</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#підготовлення-проекту" class="sidebar-link">Підготовлення проекту</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#фаилова-структура" class="sidebar-link">Файлова структура</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#встановлення-залежностеи" class="sidebar-link">Встановлення залежностей</a></li></ul></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#конфігурування-сервера" class="sidebar-link">Конфігурування сервера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#першии-запуск" class="sidebar-link">Перший запуск</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#налаштування-проміжного-пз-доступ-до-статичних-фаилів" class="sidebar-link">Налаштування проміжного ПЗ. Доступ до статичних файлів</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#оброблення-запитів" class="sidebar-link">Оброблення запитів</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#оброблення-параметрів-запиту" class="sidebar-link">Оброблення параметрів запиту</a></li></ul></li><li><a href="/dis-edu/components-interaction/03.restfull-services.html" class="sidebar-link">RESTfull сервіси</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#підготовлення-проекту" class="sidebar-link">Підготовлення проекту</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#розроблення-контролера" class="sidebar-link">Розроблення контролера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#розроблення-роутера" class="sidebar-link">Розроблення роутера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#перевірка-працездатності-сервісу" class="sidebar-link">Перевірка працездатності сервісу</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#автоматизація-тестування-сервісу" class="sidebar-link">Автоматизація тестування сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/04.graphql.html" class="sidebar-link">GraphQL</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#схема" class="sidebar-link">Схема</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#об-єктні-типи" class="sidebar-link">Об'єктні типи</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#скалярні-типи" class="sidebar-link">Скалярні типи.</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#інтерфеиси" class="sidebar-link">Інтерфейси</a></li></ul></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#query-mutations-subscriptions" class="sidebar-link">Query, mutations, subscriptions</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#resolvers" class="sidebar-link">Resolvers</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#розроблення-graphql-сервісу" class="sidebar-link">Розроблення GraphQL сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/05.sse.html" aria-current="page" class="active sidebar-link">Push-нотифікація з використанням Server-Sent Events</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#вимоги-до-push-сервера" class="sidebar-link">Вимоги до push-сервера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#використання-eventsource" class="sidebar-link">Використання EventSource</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#розроблення-push-сервісу" class="sidebar-link">Розроблення push-сервісу</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#першии-запуск" class="sidebar-link">Перший запуск</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#вдосконалення-сервісу" class="sidebar-link">Вдосконалення сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/06.scripted-query.html" class="sidebar-link">Scripted Query сервіси</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#швидке-розроблення-програм-low-code-development-platform" class="sidebar-link">Швидке розроблення програм. Low-Code Development Platform</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#принцип-делегуванням-сценарію-оброблення-даних" class="sidebar-link">Принцип делегуванням сценарію оброблення даних</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#розроблення-сервісу-з-підтримкою-sq" class="sidebar-link">Розроблення сервісу з підтримкою SQ</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#обробник-sq-запитів-з-підтримкою-асинхроних-операціи" class="sidebar-link">Обробник SQ-запитів з підтримкою асинхроних операцій</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#обробник-sq-запитів-з-підтримкою-sse" class="sidebar-link">Обробник SQ-запитів з підтримкою SSE</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/swagger/" class="sidebar-heading clickable"><span>Прикладний програмний інтерфейс сервісів</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/eda/" class="sidebar-heading clickable"><span>Реалізація взаємодії компонентів в EDA</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/msa/" class="sidebar-heading clickable"><span>Реалізація взаємодії сервісів в MSA</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="push-нотифікація-з-використанням-server-sent-events"><a href="#push-нотифікація-з-використанням-server-sent-events" class="header-anchor">#</a> Push-нотифікація з використанням Server-Sent Events</h1> <p>Технологія <code>push</code> , або push-сервер , - це стиль взаємодії на основі Інтернету, коли запит на дану транзакцію ініціюється сервером. Це протиставляється функції <code>pull/get</code>, коли запит на передачу інформації ініціюється клієнтом:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuL98J2x9Br9mpibCpIlXKYW02cScPnOavfKe1ASMbMKcft8fS46b5NJjO89M2aMfXQMfnK0jK14aIRXw6rrazSK5-Nd58ECSKlDIW7O30000" alt="uml diagram"></center> <p>Служби <code>push</code> використовують модель публікації/підписки, коли клієнт &quot;підписується&quot; на різні інформаційні &quot;канали&quot;, що надаються сервером; всякий раз, коли новий вміст доступний на одному з цих каналів, сервер передає цю інформацію клієнту.</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/lP312O0m34NlcI8Bk82851p12MgC4D2qjAdpsuEAe6Vvj_Tub--o-MHbMm4zMKWuhC9gWB5Y8ObU3KTEkn03mgcnwI_OOYvJfYGJtxPhNZQQ18KBF_hFI8F98kJ_ZkeSwrplE000" alt="uml diagram"></center> <p>Віддалені сповіщення обробляються віддаленим сервером. За цим сценарієм клієнтська програма повинна бути зареєстрована на сервері з унікальним ключем (наприклад, UUID ). Потім сервер запускає повідомлення за унікальним ключем, щоб доставити повідомлення клієнтській програмі через узгоджений протокол клієнт/сервер, такий як HTTP, і клієнт відображає отримане повідомлення. Коли надходить push-сповіщення, воно може передавати короткі сповіщення та повідомлення, відтворювати звукові сигнали, щоб привернути увагу користувача. Push-сповіщення зазвичай використовуються програмами, щоб привернути увагу користувачів до інформації.</p> <p><strong>Server-Sent Events</strong> ( SSE ) - це технологія push-сервера, що дозволяє клієнтові отримувати автоматичні оновлення від сервера через HTTP-з'єднання і описує, як сервери можуть ініціювати передачу даних клієнтам після встановлення початкового клієнтського з'єднання. Вони зазвичай використовуються для надсилання повідомлень або безперервних потоків даних клієнтові браузера і призначені для посилення власної крос-браузерної потокової передачі через API JavaScript під назвою <code>EventSource</code>, за допомогою якого клієнт запитує певну URL-адресу для отримання потоку подій.</p> <p>SSE ідеально підходить для таких сценаріїв:</p> <ul><li>ефективний односпрямований протокол зв'язку, який не додасть зайвого навантаження сервера;</li> <li>протокол із заздалегідь визначеним стандартом для обробки помилок;</li> <li>використання методів HTTP для потокової передачі даних в режимі реального часу;</li> <li>односпрямований протокол із оптимізованою затримкою для користувачів.</li></ul> <p>Основним обмеженням SSE є те, що він односпрямований, тому немає можливості передавати інформацію на сервер від клієнта. Єдиний спосіб передавати додаткові дані - в запиті під час підключення. Ця односпрямованість спричиняє додаткову проблему: коли клієнт втрачає зв’язок, немає надійного способу повідомити про це сервер.</p> <p>Специфікація SSE описує вбудований клас <code>EventSource</code>, який дозволяє підтримувати з'єднання з сервером і отримувати від нього події. <code>EventSource</code> підтримує автоматичне перепідключення при втраті з'єднання:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/pP912eCm44NtESKixKAHBgKKeKVm136Tme0cCfaelNrZiHYnhhhfDl__bydFr5uqI-Wx1Tg8OxXrX5OKA32CMX26g9EXGLi17AFMkC06rUA4_9eULs1ncjDfh44UQOwer3ed5wK27rflc5hSMYxvQc7qWxCU8OuimLVdibGVDM71wYmc9i6iA8hJCTOweGSPBUJiDrw2GtlFTgG4PJht7YyMr--UkYc9KVW9GZsw8CUjn9lZd_pUoNzK0Z1lWAfZ9YxS2m00" alt="uml diagram"></center> <h2 id="вимоги-до-push-сервера"><a href="#вимоги-до-push-сервера" class="header-anchor">#</a> Вимоги до push-сервера</h2> <p>На запит від <code>EventSource</code> push-сервер повинен відповісти зі статусом <code>200</code> і заголовком <code>Content-Type: text/event-stream</code>, потім він повинен підтримувати з'єднання відкритим і відправляти повідомлення в особливому форматі:</p> <ul><li>Текст повідомлення вказується після <code>data:</code>, пробіл після двокрапки необов'язковий.</li> <li>Повідомлення поділяються подвійним переносом рядка <code>\n\n</code>.</li></ul> <p>Наприклад:</p> <div class="language- extra-class"><pre class="language-text"><code>data: Message 1
+
+data: Message 2
+
+</code></pre></div><p>На практиці складні повідомлення зазвичай відправляються в форматі <code>JSON</code>. Для цього на сервері використовують <code>JSON.stringify( &lt;dataObject&gt; )</code>:</p> <div class="language- extra-class"><pre class="language-text"><code>data: {&quot;count&quot;:5,&quot;client&quot;:&quot;3c1ba36d-b00b-4117-a9f1-3a4bd8bc3bec&quot;,&quot;updatedAt&quot;:&quot;2021.07.13 12:45:54&quot;}
+
+</code></pre></div><p>Після створення <code>new EventSource...</code> він підключається до сервера і, якщо з'єднання обривається, - перепідключається. За замовчуванням між спробами відновити з'єднання буде невелика пауза в кілька секунд. Сервер може виставити рекомендовану затримку, вказавши у відповіді <code>retry:</code>(в мілісекундах):</p> <div class="language- extra-class"><pre class="language-text"><code>retry: 15000
+data: {&quot;count&quot;:5,&quot;client&quot;:&quot;3c1ba36d-b00b-4117-a9f1-3a4bd8bc3bec&quot;,&quot;updatedAt&quot;:&quot;2021.07.13 12:45:54&quot;}
+
+</code></pre></div><p>Поле <code>retry:</code> може посилатися як разом з даними, так і окремим повідомленням.</p> <p>Браузеру слід чекати саме стільки мілісекунд перед новою спробою підключення. Або довше, наприклад, якщо браузер знає (від операційної системи) що з'єднання з мережею немає, то він може здійснити перепідключення тільки коли воно з'явиться.</p> <p>Якщо сервер хоче зупинити спроби перепідключення, на запит від <code>EventSource</code> він повинен повернути відповідь зі статусом <code>204</code>. Також перепідключення не відбудеться, якщо у відповіді вказаний невірний <code>Content-Type</code> або статус відповіді відрізняється від <code>301</code>, <code>307</code>, <code>200</code> і <code>204</code>. Браузер створить подію <code>error</code> і не буде відновлювати з'єднання.</p> <p>Після того, як з'єднання остаточно закрито, «перевідкрити» його вже не можна. Якщо необхідно знову підключитися, необхідно створити новий <code>EventSource</code>.</p> <p>Коли з'єднання переривається через проблеми з мережею, ні сервер, ні клієнт не можуть бути впевнені в тому, які повідомлення були доставлені, а які - ні.</p> <p>Щоб правильно відновити підключення, кожне повідомлення має мати поле <code>id</code>:</p> <div class="language- extra-class"><pre class="language-text"><code>data: Message 1
+id: 1
+
+data: Message 2
+id: 2
+
+</code></pre></div><p>Отримуючи повідомлення із зазначеним <code>id</code>, браузер встановить його значення у <code>eventSource.lastEventId</code> та при перепідключенні відправить заголовок <code>Last-Event-ID</code> з цим <code>id</code>, щоб сервер міг переслати наступні повідомлення.
+В повідомленні поле <code>id</code> вказують після <code>data</code>.</p> <p>Сервер може вказати тип події за допомогою <code>event: ...</code> на початку повідомлення:</p> <div class="language- extra-class"><pre class="language-text"><code>event: ping
+data: {&quot;count&quot;:5,&quot;client&quot;:&quot;3c1ba36d-b00b-4117-a9f1-3a4bd8bc3bec&quot;,&quot;updatedAt&quot;:&quot;2021.07.13 12:45:54&quot;}
+id: 3c1ba36d-b00b-4117-a9f1-3a4bd8bc3bec
+
+</code></pre></div><p><code>EventSource</code> підтримує крос-доменні запити. Ми можемо використовувати будь-який URL:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">&quot;https://another-site.com/events&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Сервер отримає заголовок <code>Origin</code> і повинен буде відповісти з заголовком <code>Access-Control-Allow-Origin</code>.</p> <p>Щоб послати авторизовані дані, слід встановити додаткову опцію <code>withCredentials</code> при створенні <code>EventSource</code>:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">&quot;https://another-site.com/events&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  withCredentials<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="використання-eventsource"><a href="#використання-eventsource" class="header-anchor">#</a> Використання EventSource</h2> <p>Створення об'єкту <code>EventSource</code>:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">&quot;http://&lt;service host&gt;/&lt;sse endpoint&gt;&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  withCredentials<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>За замовчуванням об'єкт <code>EventSource</code> генерує 3 події:</p> <ul><li><code>message</code> - отримано повідомлення;</li> <li><code>open</code> - з'єднання відкрито;</li> <li><code>error</code> - не вдалося встановити з'єднання.</li></ul> <p>Додавання обробників цих подій здійснюється за допомогою <code>on&lt;Message&gt;</code>. Якщо тип подій відрізняється від вказаних, потрібно використовувати <code>addEventListener(...)</code>.</p> <p>Для з'ясування стану об'єкту використовують <code>eventSource.readyState</code>, яке приймає одне з значень:</p> <ul><li><code>EventSource.CONNECTING = 0</code> - підключення або відновлення підключення;</li> <li><code>EventSource.OPEN = 1</code> - підключення встановлене;</li> <li><code>EventSource.CLOSED = 2</code> - підключення закрыто.</li></ul> <p>Якщо на стороні клієнта треба закрити підключення, це робиться за допомогою <code>EventSource.close</code>. Після цього відновлення підключення неможливе. В разі потреби треба створювати новий об'єкт <code>EventSource</code>.</p> <p>Нижче наведений фрагмент коду, який ми будемо використовувати в браузері для перевірки працездатності нашого push-сервісу:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> eventSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">&quot;/ping/5&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+eventSource<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;OPEN&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token number">0</span><span class="token operator">:</span> <span class="token string">&quot;RECONNECT...&quot;</span><span class="token punctuation">,</span>
+  <span class="token number">2</span><span class="token operator">:</span> <span class="token string">&quot;CLOSE&quot;</span>
+<span class="token punctuation">}</span>
+
+eventSource<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> s <span class="token operator">=</span> state<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token string">&quot;ERROR&quot;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+eventSource<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;ping&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;ping&quot;</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+</code></pre></div><p>Створюємо об'єкт <code>eventSource</code>, який підключається до кінцевої точки <code>ping/5</code> на тому ж самому сервері, з якого була завантажена сторінка.</p> <p>Визначаємо обробники подій <code>onopen</code> <code>onerror</code>. В обробнику <code>onerror</code> за допомогою <code>readyState</code> з'ясовуємо стан об'єкту.</p> <p>За допомогою <code>addEventListener</code> визначаємо обробник для події <code>ping</code> (дані події знаходяться у <code>event.data</code>).</p> <h2 id="розроблення-push-сервісу"><a href="#розроблення-push-сервісу" class="header-anchor">#</a> Розроблення push-сервісу</h2> <p>За основу будемо використовувати наш попередній проєкт RESTfull-сервісу.</p> <p>Додамо в файлову структуру каталог <code>./src/middlewares</code>, в якому будуть знаходитися наше проміжне програмне забезпечення для підтримки SSE.</p> <p>Встановимо додаткові залежності за допомогою команди <code>npm i</code>. Файл <code>package.json</code> повинен мати наступний вигляд:</p> <div class="language-json extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br></div><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;express-sse&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node server&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;nodemon server&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;body-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.19.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cookie-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.4.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;express&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;moment&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.29.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.3.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;axios&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.21.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;jest&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^27.0.6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;nodemon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.0.9&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Ми додатково встановили бібліотеку <a href="https://www.npmjs.com/package/moment" target="_blank" rel="noopener noreferrer">moment<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> для зручного оброблення дат.</p> <p>Створимо файл <code>./src/routes/process.js</code>, в якому будемо імітувати довготривалий обчислювальний процес, який породжує серію повідомлень:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> moment <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;moment&quot;</span><span class="token punctuation">)</span>
+
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span>  <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">let</span> c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  
+  <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    
+    c<span class="token operator">++</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c <span class="token operator">&lt;=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    
+      res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        event<span class="token operator">:</span> <span class="token string">&quot;ping&quot;</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+              count<span class="token operator">:</span> c<span class="token punctuation">,</span>
+              updatedAt<span class="token operator">:</span> <span class="token function">moment</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">&quot;YYYY.MM.DD HH:mm:ss&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><p>Цей модуль експортує функцію обробки запиту, яка здійснює періодичну (з інтервалом 2с) відправку повідомлень за допомогою <code>res.sse</code>. Метод <code>send</code> в якості параметра приймає об'єкт, який містить поля <code>event: String</code>, <code>data: String</code> та <code>id: String</code>. В даному випадку <code>id</code> не використовується.
+В якості повідомлення ми передаємо серіалізований об'єкт, в якому поле <code>count</code> задає номер повідомлення в серії, а поле <code>updatedAt</code> відображує час відправлення повідомлення (для форматування подання часу ми використовуємо бібліотеку <code>moment</code>)</p> <p>Після того, як кількість повідомлень досягне граничного значення, яке визначається через <code>req.params.count</code>, ми здійснюємо зупинку SSE за допомогою <code>res.sse.close()</code>.</p> <p>Об'єкт <code>res.sse</code> ми будемо створювати в middleware для підтримки SSE.</p> <p>Створимо спрощену версію такого middleware в файлі <code>./middlewares/sse-p2p-simple.js</code>:</p> <div class="language-js extra-class"><pre class="language-js"><code>
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  clientRetryInterval<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  maxStreamDuration<span class="token operator">:</span> <span class="token number">50000</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">let</span> <span class="token function-variable function">sendMessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token parameter">res<span class="token punctuation">,</span> message</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span> res<span class="token punctuation">.</span>writableEnded <span class="token punctuation">)</span> <span class="token keyword">return</span>
+  
+    res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>event<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">&quot;event: &quot;</span> <span class="token operator">+</span> message<span class="token punctuation">.</span>event <span class="token operator">+</span> <span class="token string">&quot;\n&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> message<span class="token punctuation">.</span>data <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">id: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n</span><span class="token template-punctuation string">`</span></span> 
+    <span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">terminate</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  
+  res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">close</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">204</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  req<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">setNoDelay</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  res<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;text/event-stream&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Cache-Control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;no-cache&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Connection&quot;</span><span class="token operator">:</span> <span class="token string">&quot;keep-alive&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">retry:  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token punctuation">.</span>clientRetryInterval<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+    
+  res<span class="token punctuation">.</span>sse <span class="token operator">=</span> <span class="token punctuation">{</span>
+    
+    <span class="token function-variable function">close</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">terminate</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">send</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> event<span class="token punctuation">,</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">sendMessage</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> <span class="token punctuation">{</span>event<span class="token punctuation">,</span>data<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Визначаємо налаштування нашого middleware (<code>options</code>):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  clientRetryInterval<span class="token operator">:</span> <span class="token number">1000</span> <span class="token comment">// значення затримки відновлення з'єднання об'єктом eventSource</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Визначаємо допоміжні функції для відправлення повідомлень, закриття потоку та переривання SSE:</p> <div class="language-js extra-class"><pre class="language-js"><code>
+
+<span class="token comment">/**
+ * Пише повідомлення в необхідному форматі в потік відповіді.
+ * @function sendMessage  
+ * @param {Response} res потік відповіді 
+ * @param {Object} message повідомлення  
+ */</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">sendMessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token parameter">res<span class="token punctuation">,</span> message</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span> res<span class="token punctuation">.</span>writableEnded <span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token comment">// якщо потік вже закритий, ігноруємо відправку повідомлень</span>
+  
+    res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>event<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">&quot;event: &quot;</span> <span class="token operator">+</span> message<span class="token punctuation">.</span>event <span class="token operator">+</span> <span class="token string">&quot;\n&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> message<span class="token punctuation">.</span>data <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">id: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n</span><span class="token template-punctuation string">`</span></span> 
+    <span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * Закриває потік відповіді.
+ * @function terminate  
+ * @param {Response} res потік відповіді 
+ */</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">terminate</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  
+  res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/**
+ * Перериває SSE.
+ * @function close  
+ * @param {Response} res потік відповіді 
+ */</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">close</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">204</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// після отримання відповіді з статусом 204 eventSource не буде відновлювати з'єднання'</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Об'єкт <code>Response</code> наслідує властивості <a href="https://nodejs.org/api/stream.html#stream_class_stream_writable" target="_blank" rel="noopener noreferrer">stream.Writable<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, тому ми можемо користуватися їм як звичайним потоком виводу. Наприклад, <code>res.write()</code>, <code>res.end()</code> або <code>res.writableEnded</code>.</p> <p>Модуль експортує middleware:</p> <div class="language-js extra-class"><pre class="language-js"><code>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// налаштовуємо умови для push-сервера</span>
+  req<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">setNoDelay</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  res<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;text/event-stream&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Cache-Control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;no-cache&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Connection&quot;</span><span class="token operator">:</span> <span class="token string">&quot;keep-alive&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  <span class="token comment">// передаємо кліенту значення затримки відновлення з'єднання'</span>
+  res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">retry:  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token punctuation">.</span>clientRetryInterval<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+  <span class="token comment">//  створюємо об'єкт для підтримки SSE'</span>
+  res<span class="token punctuation">.</span>sse <span class="token operator">=</span> <span class="token punctuation">{</span>
+    
+    <span class="token comment">// метод для переривання SSE</span>
+    <span class="token function-variable function">close</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">terminate</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    
+    <span class="token comment">// метод для відправлення повідомлень</span>
+    <span class="token function-variable function">send</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> event<span class="token punctuation">,</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">sendMessage</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> <span class="token punctuation">{</span>event<span class="token punctuation">,</span>data<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// тепер наступний обробник запиту має підтримку SSE через res.sse</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>В файлі <code>./server.js</code> визначимо кінцеву точку, та задамо для неї обробник з використанням SSE:</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'body-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> cookieParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cookie-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> sse <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./middlewares/sse-p2p-simple&quot;</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>staticPath<span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span> extended<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cookieParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    parameterLimit<span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span><span class="token punctuation">,</span>
+    extended<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">,</span> router<span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span> <span class="token string">&quot;/ping/:count&quot;</span><span class="token punctuation">,</span> sse<span class="token punctuation">,</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes/process&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> server <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token punctuation">,</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">** EDU JACE server starts at port </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> server
+</code></pre></div><h2 id="першии-запуск"><a href="#першии-запуск" class="header-anchor">#</a> Перший запуск</h2> <p>Запустимо сервер за допомогою команди</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> start
+</code></pre></div><p>Завантажимо в браузері сторінку за адресою <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">http://localhost:8080<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>.</p> <p>На наступному кроці відкриємо інструменти розробки (<code>console</code>) та перенесомо фрагмент коду, що використовує <code>EventSource</code>.</p> <center><img src="/dis-edu/05-01.jpg" style="width:80%;margin:1em 0;border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Після виконання цього коду отримаємо вивід:</p> <div class="language- extra-class"><pre class="language-text"><code>OPEN
+ping {count: 1, updatedAt: &quot;2021.07.13 20:57:26&quot;}
+ping {count: 2, updatedAt: &quot;2021.07.13 20:57:28&quot;}
+ping {count: 3, updatedAt: &quot;2021.07.13 20:57:30&quot;}
+ping {count: 4, updatedAt: &quot;2021.07.13 20:57:32&quot;}
+ping {count: 5, updatedAt: &quot;2021.07.13 20:57:34&quot;}
+RECONNECT...
+OPEN
+ping {count: 1, updatedAt: &quot;2021.07.13 20:57:41&quot;}
+ping {count: 2, updatedAt: &quot;2021.07.13 20:57:43&quot;}
+...
+</code></pre></div><p>Що ми бачимо?</p> <p><code>EventSource</code> створює з'єднання, на сервері запускається <code>process</code>, <code>EventSource</code> починає приймати повідомленя. Але, не зважаючи на те, що ми на сервері перериваємо SSE, <code>EventSource</code> відновлює з'єднання, і процес повторюється.</p> <p>Відбувається наступне. При обробленні запиту сервер пише заголовок відповіді з статусом <code>200</code>. Ми вже не можемо змінити цей статус, лише можемо закрити потік. Тобто закриття SSE може бути передано з сервера лише після відновлення з'єднання:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/bL5B2eCm4Dtd5BDi5ugKhgGKeKVm136Tme0cCfaelNrZiHYnGhlD--JDUvKNpHAwLe4suXXkBQ4L1GeCenQ4Fk9agDTM08U8rIwmGJKp8RkcpoLO72TrAgkH1veaAgLEoXafmOV66wO6rvHBjb0OVU-iHuYH9VZoL1JgWoPUi33paKdmaEVvST_MEg476Itax3U_n0xj_R1nIgnCwzxnOd7TvjHLIOp2Jn3gq0NPRoN-73VvgvFpZ_a0fZbK5M-Awxy0" alt="uml diagram"></center> <p>Проведемо ще один експеримент.</p> <p>Автоматичне відновлення з'єднання з боку клієнта створює передумови для розвантаження сервера за рахунок переривання з'єднання.
+Для цього змінимо файл <code>./src/middlewares/sse-p2p-simple.js</code></p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-js"><code>
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  clientRetryInterval<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  maxStreamDuration<span class="token operator">:</span> <span class="token number">5000</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">let</span> <span class="token function-variable function">sendMessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token parameter">res<span class="token punctuation">,</span> message</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span> res<span class="token punctuation">.</span>writableEnded <span class="token punctuation">)</span> <span class="token keyword">return</span>
+  
+    res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>event<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">&quot;event: &quot;</span> <span class="token operator">+</span> message<span class="token punctuation">.</span>event <span class="token operator">+</span> <span class="token string">&quot;\n&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> message<span class="token punctuation">.</span>data <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">terminate</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">close</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">204</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  req<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">setNoDelay</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  res<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;text/event-stream&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Cache-Control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;no-cache&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Connection&quot;</span><span class="token operator">:</span> <span class="token string">&quot;keep-alive&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">retry:  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token punctuation">.</span>clientRetryInterval<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+    
+  res<span class="token punctuation">.</span>sse <span class="token operator">=</span> <span class="token punctuation">{</span>
+    
+    <span class="token function-variable function">close</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">terminate</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">send</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> event<span class="token punctuation">,</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">sendMessage</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> <span class="token punctuation">{</span>event<span class="token punctuation">,</span>data<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> 
+  <span class="token punctuation">}</span>
+
+  
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">terminate</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+     <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+     options<span class="token punctuation">.</span>maxStreamDuration
+  <span class="token punctuation">)</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Тепер наше middleware перерива зв'язок через проміжок часу <code>options.maxStreamDuration</code> (5c).</p> <p>Перезапустимо сервер та отримаємо результат:</p> <div class="language- extra-class"><pre class="language-text"><code>OPEN
+ping {count: 1, updatedAt: &quot;2021.07.13 21:26:53&quot;}
+ping {count: 2, updatedAt: &quot;2021.07.13 21:26:55&quot;}
+RECONNECT...
+OPEN
+ping {count: 1, updatedAt: &quot;2021.07.13 21:27:01&quot;}
+ping {count: 2, updatedAt: &quot;2021.07.13 21:27:03&quot;}
+RECONNECT...
+OPEN
+...
+</code></pre></div><p>Тепер клієнт отримує не всі повідомлення, оскільки <code>process</code> триває довше, ніж 5с, після яких сервер перериває з'єднання. Клієнт відновлює з'єднання, але він не впізнаний сервером. Це ситуація так званих &quot;протікань&quot; (event leaks).</p> <p>Таким чином, ми повінні розраховувати на те, що одна сесія SSE буде відповідати декільком запитам з боку клієнта. Ми повинні на сервері зберігати інформацію про клієнта-підписника та розпізнавати його після відновлення з'єднання.</p> <p>З другого боку, в той час, коли з'єднання загублено, <code>process</code> продовжує надсилати повідомлення. Вони повинні зберігатися в буфері до відновлення з'єднання. Коли з'єдняння буде відновлено, можна буде передати весь буфер цілком. Зрозуміло, що після передачі буфера він може бути очищений.</p> <h2 id="вдосконалення-сервісу"><a href="#вдосконалення-сервісу" class="header-anchor">#</a> Вдосконалення сервісу</h2> <p>Побудуємо діаграму для першого запиту:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/pLDBQiCm4Dth57C1OrCe1652IDf5jZKvW2fFOe4i2McSqDjNCgfZ9ovqsTretipxIFOkaF0qz9g1a6Gz7BH2GmmOI8-245p4bLHE60AyHgonWvV8yYGKstcRWy5RsfwlDUYlAgsm-MZQp0Y7kcvE--RmSTo_RxVG4JckhHIwiu7ufjfKPUcKkPIlgxvwrROQRy97ZKoPsEVjUxr4E5pGe4-CfzFnROfL5uiXZy5P4n3YVT4G-4jLhJe9uKbhRFsugeidtbKUvwt441PnfbukCZc7WAPTPVaSpcVqB4sbuTKZS713wDBZtAEFjEDRGIj8W6eJ_a3JOY1llwRpmbWkEP3g4PIXc4Fetxp_0_T_y3vnZ0AnsoiJJI_4ixhKTlnOOgh-uMPciI51R1Vh-0T-0m00" alt="uml diagram"></center> <p>Як бачимо, middleware  генерує уникальний ідентифікатор сесії SSE, передає в потік відповіді заголовок з статусом <code>200</code>, створює об'єкт  <code>sse</code>, доступ до якого здійснюється через <code>res.sse</code>. Основний обробник запиту запускає <code>process</code>, який розпочинає періодично відсилати повідомлення. У відповідь на це, <code>res.sse</code> створює буфер повідомлень, додає в нього повідомлення, після чого &quot;скидає&quot; з буфера повідомлення в потік (якщо він ще відкритий) та знищує буфер. Через певний час <code>sse</code> закриває потік, тим самим перериває з'єднання.</p> <p>В той час, коли з'єднання розірване, <code>process</code> продовжує надсилати повідомлення. Їх треба зберігати в буфері до відновлення з'єднання з боку клієнта:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/TOv13e0W40FllA8Vy0CS35z1N2A98DbTVB-GU371MvjEsZfHpzhoQL3v2YI2POK8MGYLtI0mUINKJgMGgY-AhSL8R0OruAc5HMroV5fVQQ4f4r9Hujl_3a_hN8_wsGS0" alt="uml diagram"></center> <p>Таким чином, коли з'єднання розірване, буфер накопичує повідомлення.</p> <p>Розглянемо процес відновлення з'єднання:</p> <center style="border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);padding:1em;"><img src="https://www.plantuml.com/plantuml/svg/fLB1IiGm4BtdA-O7IeiWBA6K1Ur148IjD_4Gqrata2OXcUxYtvlKA6stU_AMphnvRzwRxWC9J-EW6GX9riE3LcY80GFfKH22YtqbbHE60C-nrzdHIsGP2KKpBtCmU4dJR37OeJ-hDEIybHX2cifF3gG616KeOeHUG4A8X05Dl-Rx68z7z2m14kxd4pYuCPmIThPHwcTv3dLzQBlNbqFRD70YSbnRAVJ91kAxQbULfLFcixo7DtWMWOesqHHFZ_2-6SUW-bxZHVXeB4iajNavXrGNioe7Zy5P4tUFwTCO-5rLiHbWOIdAJlQtcIQZq0iIe2RO5Wk77WDv-yL-7ty1_kiY6v5i7ePdvArxhQlNbYVPAwyhaTiczt7X-8z_0m00" alt="uml diagram"></center> <p>При відновленні з'єднання  клієнт в заголовку запиту передає <code>Last-Event-ID</code>. Якщо для нього існує буфер, тоді <code>middleware</code> &quot;скидає&quot; буфер в потік відповіді та знищує цей буфер. Далі процес відбувається так, як і в попередньому випадку.</p> <p>Останнє, що треба спроєктувати, так це поведінка сервера під час завершення сессії SSE.</p> <p>Завершення сесії з боку сервера ініціюється в одному з двох випадків:</p> <ul><li>коли потік відповіді ще відкритий, тобто з'єднання встановлено та в потік передано заголовок з статусом <code>200</code> - треба закрити потік та запам'ятати, що сесія завершена;</li> <li>коли потік відповіді закритий, потрібно просто запам'ятати, що сесія завершена.</li></ul> <p>Тоді під час відновлення з'єднання можна перевірити, що саме ця сесія завершена та відправити у відповідь заголовок з статусом <code>204</code>, після чого закрити потік. У відповідь на це клієнт припинить відновлення з'єднання.</p> <p>В файлі <code>./src/middlewares/sse-p2p-buffered.js</code> розробимо нову версію нашого maddleware:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token punctuation">{</span>v4<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;uuid&quot;</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  clientRetryInterval<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  maxStreamDuration<span class="token operator">:</span> <span class="token number">5000</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// буфери повідомлень</span>
+
+<span class="token keyword">let</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// стани сесій</span>
+
+<span class="token keyword">let</span> status <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// скидає буфер повідомлень в потік</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">sendMessages</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> res<span class="token punctuation">.</span>writableEnded<span class="token punctuation">)</span> <span class="token keyword">return</span>
+
+    res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+      messages<span class="token punctuation">[</span>res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span>id<span class="token punctuation">]</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span> <span class="token parameter">item</span> <span class="token operator">=&gt;</span>   <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>event<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">&quot;event: &quot;</span> <span class="token operator">+</span> item<span class="token punctuation">.</span>event <span class="token operator">+</span> <span class="token string">&quot;\n&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> item<span class="token punctuation">.</span>data <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>
+                <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">id: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n</span><span class="token template-punctuation string">`</span></span> 
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">delete</span> messages<span class="token punctuation">[</span>res<span class="token punctuation">.</span>sse<span class="token punctuation">.</span>id<span class="token punctuation">]</span> 
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// завершує потік</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">terminateStream</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// завершує сесію</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">closeStream</span> <span class="token operator">=</span> <span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">204</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// якщо встановлення сесії - генеруємо UUID</span>
+  <span class="token comment">// якщо відновлення - забираємо з заголовку запиту (last-event-id)</span>
+
+  <span class="token keyword">let</span> id <span class="token operator">=</span> req<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'last-event-id'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token function">v4</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+  
+
+  <span class="token comment">// якщо сесія завершена - перериваємо її (відповідь з статусом 204) </span>
+  
+  <span class="token keyword">if</span><span class="token punctuation">(</span>status<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">&quot;CLOSED&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>messages<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">closeStream</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">}</span>
+
+
+  req<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">setNoDelay</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  res<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;text/event-stream&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Cache-Control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;s-maxage=&quot;</span><span class="token operator">+</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">30000</span><span class="token operator">/</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot;; max-age=0; stale-while-revalidate=0; stale-if-error=0&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;Connection&quot;</span><span class="token operator">:</span> <span class="token string">&quot;keep-alive&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">retry:  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token punctuation">.</span>clientRetryInterval<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+  
+    
+  res<span class="token punctuation">.</span>sse <span class="token operator">=</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">,</span>
+    
+    <span class="token function-variable function">close</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      status<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;CLOSED&quot;</span>
+      
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">send</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> event<span class="token punctuation">,</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      
+      messages<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> messages<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      messages<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>event<span class="token punctuation">,</span> data<span class="token punctuation">}</span><span class="token punctuation">)</span> 
+      
+      <span class="token function">sendMessages</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> 
+      
+    <span class="token punctuation">}</span> 
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// якщо для сесії після відновлення існує буфер повідомлень - &quot;скидаємо&quot; його в потік</span>
+  
+  <span class="token keyword">if</span><span class="token punctuation">(</span>messages<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">sendMessages</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> 
+  
+
+  <span class="token keyword">let</span> t <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">terminateStream</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> options<span class="token punctuation">.</span>maxStreamDuration<span class="token punctuation">)</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre></div><p>Змінимо файл <code>./server.js</code>:</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'body-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> cookieParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cookie-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> sse <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./middlewares/sse-p2p-buffered&quot;</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>staticPath<span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span> extended<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cookieParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    parameterLimit<span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span><span class="token punctuation">,</span>
+    extended<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    limit<span class="token operator">:</span> <span class="token string">'50mb'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">,</span> router<span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/ping/:count&quot;</span><span class="token punctuation">,</span> sse<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  
+  <span class="token keyword">if</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'last-event-id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span>
+  
+  <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes/process&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span>res<span class="token punctuation">)</span>  
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> server <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token punctuation">,</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">** EDU JACE server starts at port </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>config<span class="token punctuation">.</span>server<span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> server
+</code></pre></div><p>Тепер використовуємо нову версію middleware та розпізнаємо запити на встановлення та відновлення з'єднання. (<code>process</code> активується лише під час встановлення з'єднання).</p> <p>Запустимо наш сервер та отримаємо результат:</p> <div class="language- extra-class"><pre class="language-text"><code>OPEN
+ping {count: 1, client: &quot;0262fa24-38be-4880-b760-b353a2377b52&quot;, updatedAt: &quot;2021.07.14 14:25:03&quot;}
+ping {count: 2, client: &quot;0262fa24-38be-4880-b760-b353a2377b52&quot;, updatedAt: &quot;2021.07.14 14:25:05&quot;}
+RECONNECT...
+OPEN
+ping {count: 3, client: &quot;0262fa24-38be-4880-b760-b353a2377b52&quot;, updatedAt: &quot;2021.07.14 14:25:07&quot;}
+ping {count: 4, client: &quot;0262fa24-38be-4880-b760-b353a2377b52&quot;, updatedAt: &quot;2021.07.14 14:25:09&quot;}
+RECONNECT...
+OPEN
+ping {count: 5, client: &quot;0262fa24-38be-4880-b760-b353a2377b52&quot;, updatedAt: &quot;2021.07.14 14:25:11&quot;}
+RECONNECT...
+CLOSED
+</code></pre></div><p>Бачимо, що клієнт встановлює з'єднання та 3 рази відновлює його. Повідомлення не губляться під час відновлення з'єднання. Останнє відновлення з'єднання завершує сесію SSE.</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/boldak/dis-edu/edit/master/docs/components-interaction/05.sse.md" target="_blank" rel="noopener noreferrer">Ви можете покращити цю сторінку</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">8/26/2021, 1:57:13 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dis-edu/components-interaction/04.graphql.html" class="prev">
+        GraphQL
+      </a></span> <span class="next"><a href="/dis-edu/components-interaction/06.scripted-query.html">
+        Scripted Query сервіси
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/dis-edu/assets/js/app.559d185c.js" defer></script><script src="/dis-edu/assets/js/2.43c74522.js" defer></script><script src="/dis-edu/assets/js/21.383c6eb3.js" defer></script>
+  </body>
+</html>

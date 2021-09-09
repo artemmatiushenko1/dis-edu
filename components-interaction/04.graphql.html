@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GraphQL | Розподілені інформаційні системи</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/dis-edu/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курс лекцій">
+    
+    <link rel="preload" href="/dis-edu/assets/css/0.styles.32220556.css" as="style"><link rel="preload" href="/dis-edu/assets/js/app.559d185c.js" as="script"><link rel="preload" href="/dis-edu/assets/js/2.43c74522.js" as="script"><link rel="preload" href="/dis-edu/assets/js/20.9a7379bb.js" as="script"><link rel="prefetch" href="/dis-edu/assets/js/10.afaabfa6.js"><link rel="prefetch" href="/dis-edu/assets/js/11.b38f407c.js"><link rel="prefetch" href="/dis-edu/assets/js/12.502d8f9b.js"><link rel="prefetch" href="/dis-edu/assets/js/13.19ba463b.js"><link rel="prefetch" href="/dis-edu/assets/js/14.cf84a833.js"><link rel="prefetch" href="/dis-edu/assets/js/15.c7cb41fd.js"><link rel="prefetch" href="/dis-edu/assets/js/16.d95316e9.js"><link rel="prefetch" href="/dis-edu/assets/js/17.75c3ca84.js"><link rel="prefetch" href="/dis-edu/assets/js/18.8c26beee.js"><link rel="prefetch" href="/dis-edu/assets/js/19.e260de96.js"><link rel="prefetch" href="/dis-edu/assets/js/21.383c6eb3.js"><link rel="prefetch" href="/dis-edu/assets/js/22.da07fd05.js"><link rel="prefetch" href="/dis-edu/assets/js/23.97bda903.js"><link rel="prefetch" href="/dis-edu/assets/js/24.1851e457.js"><link rel="prefetch" href="/dis-edu/assets/js/25.6444c9f3.js"><link rel="prefetch" href="/dis-edu/assets/js/26.254874da.js"><link rel="prefetch" href="/dis-edu/assets/js/27.24e27039.js"><link rel="prefetch" href="/dis-edu/assets/js/28.240d97ca.js"><link rel="prefetch" href="/dis-edu/assets/js/29.42ac25dd.js"><link rel="prefetch" href="/dis-edu/assets/js/3.25ea1055.js"><link rel="prefetch" href="/dis-edu/assets/js/30.f7c5143f.js"><link rel="prefetch" href="/dis-edu/assets/js/31.0fd81914.js"><link rel="prefetch" href="/dis-edu/assets/js/32.936308f3.js"><link rel="prefetch" href="/dis-edu/assets/js/33.c3386f09.js"><link rel="prefetch" href="/dis-edu/assets/js/34.3fb48e0a.js"><link rel="prefetch" href="/dis-edu/assets/js/35.728f7bae.js"><link rel="prefetch" href="/dis-edu/assets/js/36.3e18223b.js"><link rel="prefetch" href="/dis-edu/assets/js/37.394c24f9.js"><link rel="prefetch" href="/dis-edu/assets/js/38.8daafd37.js"><link rel="prefetch" href="/dis-edu/assets/js/39.a4a6e446.js"><link rel="prefetch" href="/dis-edu/assets/js/4.f33b38e3.js"><link rel="prefetch" href="/dis-edu/assets/js/5.8e5b1064.js"><link rel="prefetch" href="/dis-edu/assets/js/6.7e084e32.js"><link rel="prefetch" href="/dis-edu/assets/js/7.eaf79c7b.js"><link rel="prefetch" href="/dis-edu/assets/js/8.2124de32.js"><link rel="prefetch" href="/dis-edu/assets/js/9.10facf5d.js">
+    <link rel="stylesheet" href="/dis-edu/assets/css/0.styles.32220556.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dis-edu/" class="home-link router-link-active"><!----> <span class="site-name">Розподілені інформаційні системи</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dis-edu/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/boldak/dis-edu" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/intro/" class="sidebar-heading clickable"><span>Вступ</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/arch/" class="sidebar-heading clickable"><span>Архітетура розподілених інформаційних систем</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/components-interaction/" class="sidebar-heading clickable router-link-active open"><span>Реалізація взаємодії компонентів розподіленої інформаційної системи</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/dis-edu/components-interaction/01.express.html" class="sidebar-link">Розроблення веб-сервера за допомогою express.js</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#підготовлення-проекту" class="sidebar-link">Підготовлення проекту</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#фаилова-структура" class="sidebar-link">Файлова структура</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#встановлення-залежностеи" class="sidebar-link">Встановлення залежностей</a></li></ul></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#конфігурування-сервера" class="sidebar-link">Конфігурування сервера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#першии-запуск" class="sidebar-link">Перший запуск</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#налаштування-проміжного-пз-доступ-до-статичних-фаилів" class="sidebar-link">Налаштування проміжного ПЗ. Доступ до статичних файлів</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#оброблення-запитів" class="sidebar-link">Оброблення запитів</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/01.express.html#оброблення-параметрів-запиту" class="sidebar-link">Оброблення параметрів запиту</a></li></ul></li><li><a href="/dis-edu/components-interaction/03.restfull-services.html" class="sidebar-link">RESTfull сервіси</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#підготовлення-проекту" class="sidebar-link">Підготовлення проекту</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#розроблення-контролера" class="sidebar-link">Розроблення контролера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#розроблення-роутера" class="sidebar-link">Розроблення роутера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#перевірка-працездатності-сервісу" class="sidebar-link">Перевірка працездатності сервісу</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/03.restfull-services.html#автоматизація-тестування-сервісу" class="sidebar-link">Автоматизація тестування сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/04.graphql.html" aria-current="page" class="active sidebar-link">GraphQL</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#схема" class="sidebar-link">Схема</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#об-єктні-типи" class="sidebar-link">Об'єктні типи</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#скалярні-типи" class="sidebar-link">Скалярні типи.</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#інтерфеиси" class="sidebar-link">Інтерфейси</a></li></ul></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#query-mutations-subscriptions" class="sidebar-link">Query, mutations, subscriptions</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#resolvers" class="sidebar-link">Resolvers</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/04.graphql.html#розроблення-graphql-сервісу" class="sidebar-link">Розроблення GraphQL сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/05.sse.html" class="sidebar-link">Push-нотифікація з використанням Server-Sent Events</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#вимоги-до-push-сервера" class="sidebar-link">Вимоги до push-сервера</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#використання-eventsource" class="sidebar-link">Використання EventSource</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#розроблення-push-сервісу" class="sidebar-link">Розроблення push-сервісу</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#першии-запуск" class="sidebar-link">Перший запуск</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/05.sse.html#вдосконалення-сервісу" class="sidebar-link">Вдосконалення сервісу</a></li></ul></li><li><a href="/dis-edu/components-interaction/06.scripted-query.html" class="sidebar-link">Scripted Query сервіси</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#швидке-розроблення-програм-low-code-development-platform" class="sidebar-link">Швидке розроблення програм. Low-Code Development Platform</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#принцип-делегуванням-сценарію-оброблення-даних" class="sidebar-link">Принцип делегуванням сценарію оброблення даних</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#розроблення-сервісу-з-підтримкою-sq" class="sidebar-link">Розроблення сервісу з підтримкою SQ</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#обробник-sq-запитів-з-підтримкою-асинхроних-операціи" class="sidebar-link">Обробник SQ-запитів з підтримкою асинхроних операцій</a></li><li class="sidebar-sub-header"><a href="/dis-edu/components-interaction/06.scripted-query.html#обробник-sq-запитів-з-підтримкою-sse" class="sidebar-link">Обробник SQ-запитів з підтримкою SSE</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/swagger/" class="sidebar-heading clickable"><span>Прикладний програмний інтерфейс сервісів</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/eda/" class="sidebar-heading clickable"><span>Реалізація взаємодії компонентів в EDA</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/dis-edu/msa/" class="sidebar-heading clickable"><span>Реалізація взаємодії сервісів в MSA</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="graphql"><a href="#graphql" class="header-anchor">#</a> GraphQL</h1> <p>За визначенням з офіційного сайту, GraphQL - це мова запитів і маніпулювання даними для API, а також середовище для виконання цих запитів. Мова була розроблена в Facebook для проекту з великим об'ємом різнорідних даних, коли безумовно виникають ситуації з обмеженнями REST-архітектури.</p> <p>Наприклад, отримання профілю користувача, його постів і коментарів з самого початку не здається складним завданням. Але, якщо врахувати обсяг даних в системі, і припустити, що всі ці дані зберігаються в різних базах даних (наприклад, MySQL і MongoDB), стає зрозуміло, що для цього потрібно буде зробити кілька кінцевих точок. В основі підходу GraphQL лежить наступний принцип: краще мати один «розумний» endpoint, замість багатьох простих.</p> <p>GraphQL розроблявся як більш ефективна альтернатива архітектурі REST для розробки програмних інтерфейсів додатків. Тому у цих двох підходів є спільні риси:</p> <ul><li>Вони надають єдиний інтерфейс для роботи з віддаленими даними.</li> <li>Найчастіше на запит повертається відповідь в форматі JSON.</li> <li>Обидва підходи дозволяють диференціювати запити на читання і на запис.</li></ul> <p>Але у GraphQL є і багато переваг у порівнянні з REST:</p> <ul><li>Він клієнтоорієнтований, тобто дозволяє клієнту отримати ту інформацію і саме в тому обсязі, які йому потрібні - не більше і не менше.</li> <li>На відміну від REST, необхідний тільки один endpoint для роботи.</li> <li>GraphQL - сильно типізованф мова, що дозволяє заздалегідь оцінити правильність запиту до етапу виконання.</li> <li>GraphQL надає можливість комбінувати запити.</li> <li>Запити до GraphQL API завжди повертають очікуваний результат, який відповідає схемі даних цього GraphQL API.</li> <li>Використання GraphQL дозволяє зменшити кількість даних, переданих клієнтові, так як клієнт повинен вимагати лише необхідні йому дані. Тобто якщо при використанні REST кінцева точка визначає те, які дані і в якій формі отримає клієнт, то при використанні GraphQL клієнт не повинен запитувати зайві дані, тим самим зменшуючи обсяг відповіді сервера.</li></ul> <p>На практиці використання GraphQL збільшує незалежність front-end- і back-end-розробників. Після узгодження схеми front-end-розробники більше не будуть просити створити нові endpoint'и або додати нові параметри для наявних: back-end-розробники один раз описують схему даних, а front-end-фахівець створює запити та комбінує дані так, як це необхідно.</p> <p>На практиці GraphQL API заснований на трьох основних поняттях: на схемі (schema), запитах (queries) і розпізнавачів (resolvers).</p> <h2 id="схема"><a href="#схема" class="header-anchor">#</a> Схема</h2> <p>GraphQL простий для початківців завдяки власної мови - Schema Definition Language (SDL). SDL має інтуїтивно зрозумілий синтаксис і універсальний для будь-якої технології, що використовується. В схемі описують користувацькі об'єктні типи, запити та оновлення.</p> <p>Основні типи даних перелічені нижче:</p> <h3 id="об-єктні-типи"><a href="#об-єктні-типи" class="header-anchor">#</a> Об'єктні типи</h3> <p>Об'єкт і набір полів, що описують його. Наприклад,</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">type</span>  <span class="token class-name">Planet</span>  <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span>  <span class="token scalar">ID</span> <span class="token operator">!</span>
+    <span class="token attr-name">diameter</span><span class="token punctuation">:</span>  <span class="token scalar">Int</span> 
+    <span class="token attr-name">name</span><span class="token punctuation">:</span>  <span class="token scalar">String</span> <span class="token operator">!</span>
+    <span class="token attr-name">population</span><span class="token punctuation">:</span>  <span class="token scalar">Float</span> 
+    <span class="token attr-name">residents</span><span class="token punctuation">:</span>  <span class="token punctuation">[</span><span class="token class-name">Person</span> <span class="token operator">!</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="скалярні-типи"><a href="#скалярні-типи" class="header-anchor">#</a> Скалярні типи.</h3> <p>Об'єкти GraphQL можуть мати поля різних типів, але в кінці кінців вони повинні бути приведені до одного з підтримуваних скалярних типів. Таким чином, скалярні типи є листя запиту. До стандартних скалярним типам GraphQL відносяться:</p> <ul><li><code>Int</code>  - 32-бітове ціле число зі знаком;</li> <li><code>Float</code>  - число подвійної точності з плаваючою крапкою із знаком;</li> <li><code>String</code>  - рядок в UTF-8;</li> <li><code>Boolean</code>  - логічний тип (true або false);</li> <li><code>ID</code>  - спеціальний скалярний тип, який представляє собою унікальний ідентифікатор, який використовується найчастіше для отримання об'єкта або як ключ в кеші. Значення типу <code>ID</code> серіалізуются так само, як і <code>String</code>, але той факт, що для ідентифікаторів був виділений окремий тип даних, говорить про те, що він повинен використовуватися не для відображення клієнту, а тільки в програмах.</li></ul> <p>У багатьох імплементації сервісів GraphQL є можливість створювати і свої власні скалярні типи.</p> <p>В GraphQL можна додати і так звані модифікатори типів (type modifiers), які впливають на валідацію полів. Дуже поширений <code>non-null</code> модифікатор, який гарантує, що дане значення ніколи не буде <code>null</code> (інакше отримаємо помилку виконання. Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code>    <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+</code></pre></div><p>Інший поширений модифікатор - <code>List</code>. Можна помітити тип як <code>List</code>, в такому випадку очікується, що в цьому місці буде повернуто масив з таких значень. Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code>    <span class="token attr-name">films</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Film</span><span class="token operator">!</span><span class="token punctuation">]</span>
+</code></pre></div><p>Модифікатори можна комбінувати і використовувати на будь-якому рівні вкладеності.</p> <h4 id="перерахування"><a href="#перерахування" class="header-anchor">#</a> Перерахування</h4> <p>Спеціальний скалярний тип, який обмежений певним набором значень. приклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">enum</span>  <span class="token constant">HAIR_COLOR</span>  <span class="token punctuation">{</span>
+    <span class="token constant">BLACK</span> 
+    <span class="token constant">BLONDE</span> 
+    <span class="token constant">BROWN</span> 
+    <span class="token constant">GREY</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Також в GraphQL є 2 абстрактних типи: <code>union</code> і <code>interface</code>. Вони можуть використовуватися тільки як поворотний тип, тобто можна лише отримати дані такого типу, але не передати в запит в якості аргументу.</p> <h3 id="інтерфеиси"><a href="#інтерфеиси" class="header-anchor">#</a> Інтерфейси</h3> <p>Абстрактний тип, що включає в себе набір обов'язкових полів, які повинні включати в себе типи, успадковують цей інтерфейс. Якщо це не буде виконано, то станеться помилка валідації схеми. Нариклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">interface</span>  <span class="token class-name">Character</span>  <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span>  <span class="token scalar">ID</span> <span class="token operator">!</span>
+    <span class="token attr-name">name</span><span class="token punctuation">:</span>  <span class="token scalar">String</span> <span class="token operator">!</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span>  <span class="token class-name">Droid</span>  <span class="token keyword">implements</span>  <span class="token class-name">Character</span>  <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span>  <span class="token scalar">ID</span> <span class="token operator">!</span>
+    <span class="token attr-name">name</span><span class="token punctuation">:</span>  <span class="token scalar">String</span> <span class="token operator">!</span>
+    <span class="token attr-name">function</span><span class="token punctuation">:</span>  <span class="token scalar">String</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span>  <span class="token class-name">Human</span>  <span class="token keyword">implements</span>  <span class="token class-name">Character</span>  <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span>  <span class="token scalar">ID</span> <span class="token operator">!</span>
+    <span class="token attr-name">name</span><span class="token punctuation">:</span>  <span class="token scalar">String</span> <span class="token operator">!</span>
+    <span class="token attr-name">starships</span><span class="token punctuation">:</span>  <span class="token punctuation">[</span><span class="token class-name">Starship</span> <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Інший абстрактний тип, не включає обов'язкові поля. Може застосовуватися там, де необхідно використовувати сімейство з типів, у яких немає загальних полів, наприклад при реалізації пошуку або складних підписок. Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">union</span>  <span class="token class-name">SearchResult</span>  <span class="token operator">=</span>  <span class="token property">Human</span>  <span class="token operator">|</span>  <span class="token property">Starship</span>  <span class="token operator">|</span>  <span class="token property">Film</span> 
+<span class="token operator">...</span>  <span class="token keyword">on</span>  <span class="token class-name">Human</span>  <span class="token punctuation">{</span>
+    <span class="token property">name</span>
+    <span class="token property">height</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span>  <span class="token keyword">on</span>  <span class="token class-name">Starship</span>  <span class="token punctuation">{</span>
+    <span class="token property">model</span>
+    <span class="token property">capacity</span>
+    <span class="token property">manufacturer</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span>  <span class="token keyword">on</span>  <span class="token class-name">Film</span>  <span class="token punctuation">{</span>
+    <span class="token property">title</span>
+    <span class="token property">episode</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Union-типи використовуються в тих місцях схеми, де можна сказати, що тут можна повернути один з перерахованих типів. У свою чергу, інтерфейси використовуються там, де про тип можна сказати, що він реалізує цей контракт.</p> <h2 id="query-mutations-subscriptions"><a href="#query-mutations-subscriptions" class="header-anchor">#</a> Query, mutations, subscriptions</h2> <p>Існують спеціальні типи, що визначають тип операції, яку клієнт хоче виконати, наприклад отримання даних або їх оновлення. Ці типи є точками входу для API. Будь GraphQL API повинен обов'язково мати хоча б один <code>query</code>, але <code>mutations</code> і <code>subscriptions</code> необов'язкові. Варто відзначити, що, незважаючи на свій особливий статус, ці спеціальні типи такі ж, як і інші об'єктні типи GraphQL. Розглянемо кожен з цих типів докладніше.</p> <p><b><code>Query</code></b> - спеціальний тип, який згідно з конвенцією є запит на отримання даних (можна сказати, що це аналог GET в REST). Саме цей тип даних обов'язковий для будь-якого GraphQL API. Розглянемо простий приклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">query</span>  <span class="token definition-query function">GetAllFilms</span>  <span class="token punctuation">{</span>
+    <span class="token object">allFilms</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span>
+        <span class="token property">title</span>
+        <span class="token property">episode</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Це простий запит на отримання інформації про всі фільми. Уже на цьому етапі видно важлива перевага використання GraphQL: ми отримуємо тільки ті дані, які нам потрібні в додатку (в даному випадку <code>id</code>, <code>title</code>, <code>episode</code>). Таким чином, на практиці не доводиться отримувати всі дані незалежно від того, потрібні вони чи ні, і виконувати часом досить складну фільтрацію, якщо можна отримати лише потрібні дані і далі працювати тільки з ними.</p> <p><b><code>Mutations</code></b> - спеціальний тип, який, на відміну від <code>query</code>, використовується для оновлення даних (можна сказати, що це аналог POST). Основна відмінність <code>query</code> від <code>mutation</code> - їх поведінка при отриманні результатів запитів: при виконанні <code>query</code> обробка полів результату буде виконуватися паралельно, так як вони не змінюють дані. У свою чергу, в <code>mutations</code> це виконується послідовно, щоб забезпечити цілісність даних. Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">mutation</span>  <span class="token definition-mutation function">DeleteEpisode</span>  <span class="token punctuation">{</span>
+    <span class="token property-query">deleteFilm</span> <span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">&quot; 123456 &quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token property">title</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>У прикладі можна помітити, що відмінностей в синтаксисі немає, запит починається з назви операції (mutation) і також є іменованих.</p> <p><b><code>Subscriptions</code></b> - спеціальний тип даних, який дозволяє реалізувати систему publisher / subscriber. Тобто це спосіб відправки даних клієнта, який «слухає» ці дані в реальному часі. Відповідь сервера приходить не одноразово, а кожен раз при спрацьовуванні певних умов на сервері за умови, що клієнт «слухає» ці дані. Можна сказати, що це аналог push-нотифікацій, які працюють в одній системі з усіма іншими типами запитів - <code>query</code> і <code>mutations</code>. Великий плюс даного підходу - те, що клієнт і в цьому випадку може за допомогою аргументів визначити, за якої умови результат з сервера повинен приходити на клієнт. Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">subscription</span>  <span class="token object">WaitForNewFilm</span>  <span class="token punctuation">{</span>
+     <span class="token property-query">Film</span> <span class="token punctuation">(</span><span class="token attr-name">filter</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token attr-name">action</span> <span class="token punctuation">:</span> <span class="token constant">CREATED</span>  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span>
+        <span class="token property">title</span>
+        <span class="token property">episode</span>
+        <span class="token object">characters</span> <span class="token punctuation">{</span>                
+            <span class="token property">name</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Очікуються тільки дані про створений фільм. Якщо ж станеться зміна наявної інформації про фільм, його видалення або якась інше подія, клієнт ці дані не отримає.</p> <h2 id="resolvers"><a href="#resolvers" class="header-anchor">#</a> Resolvers</h2> <p>Resolvers - це спеціальні функції, які реалізують всі типи запитів, які визначені в схемі. Кожен з них отримує 4 аргументи:</p> <ul><li><code>obj</code>  - Попередній об'єкт, який для поля кореневого типу запиту часто не використовується.</li> <li><code>args</code> - Аргументи, надані полю в запиті GraphQL.</li> <li><code>context</code> - Значення, яке надається кожному вирішувачеві та містить важливу контекстну інформацію, наприклад, посилання на клієнта доступу до бази даних.</li> <li><code>info</code> - Значення, яке містить специфічну для поля інформацію, що стосується поточного запиту, а також деталі схеми.</li></ul> <p>Наприклад:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token attr-name">Query</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token property-query">human</span><span class="token punctuation">(</span><span class="token property">obj</span><span class="token punctuation">,</span> <span class="token property">args</span><span class="token punctuation">,</span> <span class="token property">context</span><span class="token punctuation">,</span> <span class="token property">info</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property">return</span> <span class="token property">context</span>.<span class="token property">db</span>.<span class="token property-query">loadHumanByID</span><span class="token punctuation">(</span><span class="token property">args</span>.<span class="token property">id</span><span class="token punctuation">)</span>
+      .<span class="token property-query">then</span><span class="token punctuation">(</span><span class="token property">userData</span> <span class="token operator">=</span>&gt; <span class="token property">new</span> <span class="token property-query">Human</span><span class="token punctuation">(</span><span class="token property">userData</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>В запиті передається <code>id</code> людини (args.id), <code>resolver</code> повертає <code>promise</code>, в якому з бази даних за значенням <code>id</code> зчитуються дані профіля, які використовуються для створення нового примірника типу <code>Human</code>.</p> <h2 id="розроблення-graphql-сервісу"><a href="#розроблення-graphql-сервісу" class="header-anchor">#</a> Розроблення GraphQL сервісу</h2> <p>Створимо каталог проекту, перейдемо в нього та ініціюємо проект за допомогою команди:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> init
+</code></pre></div><p>Після цього, створимо наступну файлову структуру:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">.</span>
+├───src
+ 
+    ├───controllers                                                                                                                          
+    └───models                                                                                                                                 
+└── package.json             
+</code></pre></div><p>Призначення каталогів:</p> <ul><li><strong>./src/models</strong> - файли, що експортують моделі даних;</li> <li><strong>./src/controllers</strong> - файли, що експортують контролери моделей.</li></ul> <p>Встановимо необхідні для роботи пакети:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save lodash
+
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev graphpack
+</code></pre></div><p>Встановлені залежності будуть додані в файл <code>package.json</code>, який повинен мати наступний вигляд:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;graphql&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;graphpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.0.9&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>В секцію <code>scripts</code> додамо необхідні скрипти для відлагодження та побудови сервісу:</p> <div class="language-json extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;graphql&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;graphpack&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;graphpack build&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;graphpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.0.9&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Створимо файл <code>./src/models/presidents.js</code>, який експортує наші дані:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Barrac Obama&quot;</span><span class="token punctuation">,</span>
+    photo<span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/274px-President_Barack_Obama.jpg&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Donald Trump&quot;</span><span class="token punctuation">,</span>
+    photo<span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Joe Biden&quot;</span><span class="token punctuation">,</span>
+    photo<span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/6/68/Joe_Biden_presidential_portrait.jpg&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p>Це та ж сама модель, яку ми використовували у попередніх проєктах.</p> <p>Зрозуміло, що контролер, так само, не буде сильно відрізнятися (<code>./src/controllers/presidents-crud.js</code>):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Presidents <span class="token keyword">from</span> <span class="token string">&quot;../models/presidents&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> findIndex<span class="token punctuation">,</span> last<span class="token punctuation">,</span> isUndefined <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;lodash&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;uuid&quot;</span>
+
+
+<span class="token keyword">let</span> <span class="token function-variable function">_read</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span> options <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isUndefined</span><span class="token punctuation">(</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token operator">?</span> Presidents<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">:</span> Presidents
+
+<span class="token keyword">let</span> <span class="token function-variable function">_update</span> <span class="token operator">=</span> <span class="token parameter">options</span>  <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result 
+  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token function">findIndex</span><span class="token punctuation">(</span> Presidents<span class="token punctuation">,</span> <span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> index <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Presidents<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> options
+    result <span class="token operator">=</span> Presidents<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">_create</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  options<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token function">v4</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  Presidents<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span> options <span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">last</span><span class="token punctuation">(</span> Presidents <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">_delete</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result 
+  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token function">findIndex</span><span class="token punctuation">(</span> Presidents<span class="token punctuation">,</span> <span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> index <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result <span class="token operator">=</span> Presidents<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span> index<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  _create<span class="token punctuation">,</span>
+  _read<span class="token punctuation">,</span>
+  _update<span class="token punctuation">,</span>
+  _delete
+<span class="token punctuation">}</span> 
+</code></pre></div><p>Почнемо формування схеми в файлі <code>./src/schema.graphql</code>:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code>
+ <span class="token keyword">type</span> <span class="token class-name">President</span> <span class="token punctuation">{</span>
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+  <span class="token attr-name">photo</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
+  <span class="token attr-name">presidents</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">President</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+  <span class="token attr-name">president</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">President</span><span class="token operator">!</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
+  <span class="token attr-name">create</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">photo</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">President</span><span class="token operator">!</span>
+  <span class="token attr-name">update</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token punctuation">,</span> <span class="token attr-name">photo</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">President</span><span class="token operator">!</span>
+  <span class="token attr-name">delete</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">President</span><span class="token operator">!</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>У відповідності до нашої моделі даних визначаємо об'єктний тип <code>President</code> :</p> <ul><li>поле <code>id</code> типу <code>ID</code> (обов'язкове, використовується модіфікатор <code>!</code>);</li> <li>поле <code>name</code> типу <code>String</code> (обов'язкове);</li> <li>поле <code>photo</code> типу <code>String</code> (опціональне).</li></ul> <p>Визначаємо два типи запитів:</p> <ul><li><code>presidents</code> - повертає непорожній масив об'єктів типу <code>President</code>;</li> <li><code>president</code> - приймає обов'язковий параметр <code>id</code> та повертає об'єкт типу <code>President</code>.</li></ul> <p>Також визначимо три типи оновлень:</p> <ul><li><code>create</code> - приймає два параметри: <code>name</code> (обов'язковий), <code>photo</code> (опціональний) та повертає створений об'єкт типу <code>President</code>;</li> <li><code>update</code> - приймає три параметри: <code>id</code> (обов'язковий), <code>name</code> (опціональний), <code>photo</code> (опціональний) та повертає оновлений об'єкт типу <code>President</code>;</li> <li><code>delete</code> - приймає один параметр <code>id</code> (обов'язковий) та повертає видалений об'єкт типу <code>President</code>.</li></ul> <p>В файлі <code>./src/resolvers.js</code> визначимо необхідні resolvers (2 -для запитів, 3 - для оновлень):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> controller <span class="token keyword">from</span> <span class="token string">&quot;./controllers/presidents-crud&quot;</span> 
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+
+  Query<span class="token operator">:</span> <span class="token punctuation">{</span>
+    
+    <span class="token function-variable function">president</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">parent<span class="token punctuation">,</span> <span class="token punctuation">{</span> id <span class="token punctuation">}</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> controller<span class="token punctuation">.</span><span class="token function">_read</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    
+    <span class="token function-variable function">presidents</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">parent<span class="token punctuation">,</span> args<span class="token punctuation">,</span> context<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> controller<span class="token punctuation">.</span><span class="token function">_read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>  
+
+  Mutation<span class="token operator">:</span> <span class="token punctuation">{</span>
+
+    <span class="token function-variable function">create</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">parent<span class="token punctuation">,</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> photo <span class="token punctuation">}</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> controller<span class="token punctuation">.</span><span class="token function">_create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token punctuation">,</span> photo <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">update</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">parent<span class="token punctuation">,</span> <span class="token punctuation">{</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> photo <span class="token punctuation">}</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> controller<span class="token punctuation">.</span><span class="token function">_update</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> photo <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    
+    <span class="token function-variable function">delete</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">parent<span class="token punctuation">,</span> <span class="token punctuation">{</span> id <span class="token punctuation">}</span><span class="token punctuation">,</span> context<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> controller<span class="token punctuation">.</span><span class="token function">_delete</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Тепер запустимо наш сервіс в режимі відлагодження:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span>npm run dev                                                                                    
+                                                                                                                                         
+<span class="token operator">&gt;</span> graphql@1.0.0 dev D:<span class="token punctuation">\</span>docs<span class="token punctuation">\</span>EDU<span class="token punctuation">\</span><span class="token number">2021</span><span class="token punctuation">\</span>dist-inf-sys<span class="token punctuation">\</span>src<span class="token punctuation">\</span>graphql                                                                            
+<span class="token operator">&gt;</span> graphpack                                                                                                                              
+                                                                                                                                         
+                                                                                                                                         
+                                                                                                                                         
+ DONE  Compiled successfully <span class="token keyword">in</span> 927ms                                                                                            <span class="token number">20</span>:02:32                                                                                                                                         
+� Server ready at http://localhost:4000/      
+</code></pre></div><p>В браузері перейдемо за адресою <a href="http://localhost:4000" target="_blank" rel="noopener noreferrer">http://localhost:4000<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> та отримаємо доступ до засобів відлагодження. Перевіримо працездатність нашого сервісу.</p> <center><img src="/dis-edu/04-01.jpg" style="width:100%;margin:1em 0;border-radius:4px;border:1px solid #cfd7e6;box-shadow:0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);"></center> <p>Виконаємо найпростіший запит <code>presidents</code>:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">query</span> <span class="token punctuation">{</span>
+  <span class="token object">presidents</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Отримаємо результат:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;presidents&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Barrac Obama&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/274px-President_Barack_Obama.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Donald Trump&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Joe Biden&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/6/68/Joe_Biden_presidential_portrait.jpg&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Виконаємо запит <code>presidents</code> та отримаємо тільки поля <code>name</code>:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">query</span> <span class="token punctuation">{</span>
+  <span class="token object">presidents</span> <span class="token punctuation">{</span>
+    <span class="token property">name</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Маємо наступний результат:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;presidents&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Barrac Obama&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Donald Trump&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Joe Biden&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Отже, ми можемо завантажувати тільки ту частину даних, яка нам потрібна (при використанні RESTfull сервіса ми завжди отримували той об'єм даних, який визначався обробником запиту).</p> <p>Перевіримо роботу запитів з параметрами:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">query</span> <span class="token punctuation">{</span>
+  <span class="token property-query">president</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property">name</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Як бачимо, параметри задаються в круглих дужках (подібно до виклику функції). Цей запит повертає наступний результат:</p> <div class="language-json extra-class"><pre class="language-json"><code>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;president&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span> 
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Barrac Obama&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Як завжди, перевіримо працездатність CRUD-інтерфейсу за допомогою робочого процесу створення об'єкта, його оновлення, видалення.</p> <p>Створюємо об'єкт:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code>
+<span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  <span class="token property-query property-mutation">create</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span><span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Результат запиту:</p> <div class="language-json extra-class"><pre class="language-json"><code>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;create&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;d904148d-bbb4-4eab-be90-1d81733b6b67&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Наш контролер автоматично генерує уникальні ідентифікатори для нових об'єктів, тому параметр <code>id</code> ми не визначали для цього типу запитів.</p> <p>Оновлюємо об'єкт:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  <span class="token property-query property-mutation">update</span><span class="token punctuation">(</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">&quot;d904148d-bbb4-4eab-be90-1d81733b6b67&quot;</span><span class="token punctuation">,</span>
+    <span class="token attr-name">photo</span><span class="token punctuation">:</span><span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/240px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Результат запиту:</p> <div class="language-json extra-class"><pre class="language-json"><code>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;errors&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Cannot return null for non-nullable field President.name.&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;locations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">5</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;update&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;name&quot;</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;extensions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;INTERNAL_SERVER_ERROR&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;exception&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;stacktrace&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">&quot;Error: Cannot return null for non-nullable field President.name.&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeValue (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:560:13)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeValueCatchingError (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:495:19)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at resolveField (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:435:10)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at executeFields (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:275:18)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at collectAndExecuteSubfields (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:713:10)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeObjectValue (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:703:10)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeValue (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:591:12)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeValue (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:557:21)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at completeValueCatchingError (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:495:19)&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;    at resolveField (D:\\docs\\EDU\\2021\\dist-inf-sys\\src\\graphql\\node_modules\\graphql\\execution\\execute.js:435:10)&quot;</span>
+          <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>Ми отримали помилку, яка пов'язана з наступним.</p> <p>В схемі для типу <code>Presidents</code> поле <code>name</code> визначене як обов'язкове, а в типі запиту <code>update</code> - як опціональне. Якщо глянути на наш попередній запит, то ми хотіли оновити лише поле <code>photo</code>.</p> <p>Як результат, запит успішно пройшов валідацію та resolver <code>update</code> успішно спрацював, але той результат, який він повернув не відповідає типу <code>Presidents</code> (поле <code>name</code> має значення <code>undefined</code>, а не повинно бути пустим).</p> <p>Спробуємо вдосконалити наш контролер та замінемо реалізацію оновлення:</p> <div class="language-js extra-class"><div class="highlight-lines"><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token keyword">import</span> Presidents <span class="token keyword">from</span> <span class="token string">&quot;../models/presidents&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> findIndex<span class="token punctuation">,</span> last<span class="token punctuation">,</span> isUndefined<span class="token punctuation">,</span> extend<span class="token punctuation">,</span> keys <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;lodash&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;uuid&quot;</span>
+
+
+<span class="token keyword">let</span> <span class="token function-variable function">_read</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span> options <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isUndefined</span><span class="token punctuation">(</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token operator">?</span> Presidents<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">:</span> Presidents
+
+<span class="token keyword">let</span> <span class="token function-variable function">_update</span> <span class="token operator">=</span> <span class="token parameter">options</span>  <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result 
+  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token function">findIndex</span><span class="token punctuation">(</span> Presidents<span class="token punctuation">,</span> <span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> index <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    <span class="token function">keys</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span> <span class="token parameter">key</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isUndefined</span><span class="token punctuation">(</span>options<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">delete</span> options<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    
+    Presidents<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> Presidents<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+    result <span class="token operator">=</span> Presidents<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">_create</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  options<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token function">v4</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  Presidents<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span> options <span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">last</span><span class="token punctuation">(</span> Presidents <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">_delete</span> <span class="token operator">=</span> <span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result 
+  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token function">findIndex</span><span class="token punctuation">(</span> Presidents<span class="token punctuation">,</span> <span class="token parameter">p</span> <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>id <span class="token operator">==</span> options<span class="token punctuation">.</span>id <span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> index <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result <span class="token operator">=</span> Presidents<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span> index<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  _create<span class="token punctuation">,</span>
+  _read<span class="token punctuation">,</span>
+  _update<span class="token punctuation">,</span>
+  _delete
+<span class="token punctuation">}</span> 
+</code></pre></div><p>Після запису файлу сервер автоматично перезавантажується, тому треба розпочати робочий процес знову.</p> <p>Створюємо об'єкт:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  <span class="token property-query property-mutation">create</span><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span><span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Результат запиту:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;create&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;362f751f-3b1a-4e0f-834c-ce176db68607&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Оновлюємо об'єкт:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  <span class="token property-query property-mutation">update</span><span class="token punctuation">(</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">&quot;362f751f-3b1a-4e0f-834c-ce176db68607&quot;</span><span class="token punctuation">,</span>
+    <span class="token attr-name">photo</span><span class="token punctuation">:</span><span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/240px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Результат запиту:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;update&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;362f751f-3b1a-4e0f-834c-ce176db68607&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/240px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Видаляємо об'єкт:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">mutation</span> <span class="token punctuation">{</span>
+  <span class="token property-query property-mutation">delete</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">&quot;362f751f-3b1a-4e0f-834c-ce176db68607&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Результат запиту:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;delete&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;362f751f-3b1a-4e0f-834c-ce176db68607&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;George Washington&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/240px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Перевіряємо, що об'єкт дійсно видалився:</p> <div class="language-graphql extra-class"><pre class="language-graphql"><code><span class="token keyword">query</span> <span class="token punctuation">{</span>
+  <span class="token object">presidents</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">name</span>
+    <span class="token property">photo</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Отримаємо результат:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;presidents&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Barrac Obama&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/274px-President_Barack_Obama.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Donald Trump&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Joe Biden&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;photo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://upload.wikimedia.org/wikipedia/commons/6/68/Joe_Biden_presidential_portrait.jpg&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/boldak/dis-edu/edit/master/docs/components-interaction/04.graphql.md" target="_blank" rel="noopener noreferrer">Ви можете покращити цю сторінку</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">8/26/2021, 1:57:13 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dis-edu/components-interaction/03.restfull-services.html" class="prev">
+        RESTfull сервіси
+      </a></span> <span class="next"><a href="/dis-edu/components-interaction/05.sse.html">
+        Push-нотифікація з використанням Server-Sent Events
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/dis-edu/assets/js/app.559d185c.js" defer></script><script src="/dis-edu/assets/js/2.43c74522.js" defer></script><script src="/dis-edu/assets/js/20.9a7379bb.js" defer></script>
+  </body>
+</html>
